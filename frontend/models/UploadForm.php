@@ -22,9 +22,9 @@ class UploadForm extends Model
     public function upload($id, $no_surat)
     {
         if ($this->validate()) {
-          $filename = $id . '-' . $no_surat;
+          $filename = $id . '-' . $no_surat . '-' . $this->imageFile->baseName ;
          //   $this->imageFile->saveAs('uploads/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
-            $this->imageFile->saveAs('uploads/' . $filename . '.' . $this->imageFile->extension);
+            $this->imageFile->saveAs('uploads/surat/' . $filename . '.' . $this->imageFile->extension);
             return true;
         } else {
             return false;

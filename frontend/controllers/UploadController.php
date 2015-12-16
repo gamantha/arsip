@@ -13,6 +13,7 @@ use yii\filters\VerbFilter;
 
 use yii\base\Model;
 use yii\web\UploadedFile;
+use yii\helpers\Html;
 
 /**
  * UploadController implements the CRUD actions for Upload model.
@@ -111,6 +112,17 @@ class UploadController extends Controller
         return $this->redirect(['index']);
     }
 
+
+    public function actionDownloadsurat($id)
+    {
+       $arsipModel = Upload::find()
+       ->andWhere(['arsip_id'=>$id])
+       ->orderBy('last_update DESC')
+       ->One();
+       ;
+echo (Html::a('<span class="fa fa-search"></span>download',  $arsipModel->location . '/'.$arsipModel->nama_file));
+    }
+
     public function actionUpload($id)
    {
 
@@ -118,14 +130,22 @@ class UploadController extends Controller
 
        $model = new UploadForm();
        $arsipModel = Arsip::findOne($id);
+       $uploadmodel = new Upload();
 
+date_default_timezone_set("Asia/Jakarta");
        if (Yii::$app->request->isPost) {
            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
            if ($model->upload($arsipModel->id,$arsipModel->no_surat)) {
                // file is uploaded successfully
-               echo 'Sukses';
-               return;
+                $uploadmodel->location = 'uploads/surat';
+                $uploadmodel->arsip_id = $arsipModel->id;
+                $uploadmodel->nama_file =  $arsipModel->id . '-' . $arsipModel->no_surat . '-' .$model->imageFile->baseName  .'.' . $model->imageFile->extension;
+                $uploadmodel->last_update = date('Y-m-d H:i:s',time());
+                $uploadmodel->save();
+         Yii::$app->session->setFlash('success', 'File is uploaded');
+                 return $this->redirect(['arsip/index']);
            }
+
        }
 
        return $this->render('upload', ['model' => $model]);
