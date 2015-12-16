@@ -19,7 +19,7 @@ use kartik\time\TimePicker;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'no_sura')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'no_surat')->textInput(['maxlength' => true]) ?>
 	
 
     <?= $form->field($model, 'tanggal_simpan')->textInput() ?>
@@ -53,7 +53,7 @@ use kartik\time\TimePicker;
 	 <?=$form->field($model, 'penyimpanan_id')->dropDownList($dataList, 
          ['prompt'=>'-Pilih Penyimpanan-']) ?>
     
-	
+	 <?= $form->field($model, 'jenis')->dropDownList(['masuk' => 'Masuk', 'keluar' => 'Keluar'],['prompt'=>'Pilih Jenis Surat']); ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

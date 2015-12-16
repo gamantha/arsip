@@ -19,7 +19,7 @@ class ArsipSearch extends Arsip
     {
         return [
             [['id','divisi_id',  'jabatan_id','penyimpanan_id'], 'integer'],
-            [['no_surat', 'tanggal_simpan','tema', 'perusahaan_id'], 'safe'],
+            [['no_surat', 'tanggal_simpan','tema', 'perusahaan_id','jenis'], 'safe'],
         ];
     }
 
@@ -64,6 +64,7 @@ class ArsipSearch extends Arsip
             'tema' => $this->tema,
             'jabatan_id' => $this->jabatan_id,
             'penyimpanan_id' => $this->penyimpanan_id,
+			'jenis' => $this->jenis,
         ]);
 
         $query->andFilterWhere(['like', 'no_surat', $this->no_surat]);

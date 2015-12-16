@@ -32,12 +32,12 @@ class Arsip extends \yii\db\ActiveRecord
    public function rules()
    {
        return [
-           [['no_surat', 'tanggal_simpan', 'perusahaan_id', 'divisi_id', 'tema', 'jabatan_id', 'penyimpanan_id'], 'required'],
+          
            [['no_surat', 'tanggal_simpan', 'perusahaan_id', 'divisi_id', 'tema', 'jabatan_id', 'penyimpanan_id', 'jenis'], 'required'],
            [['tanggal_simpan'], 'safe'],
            [['perusahaan_id', 'divisi_id', 'jabatan_id', 'penyimpanan_id'], 'integer'],
-           [['no_surat'], 'string', 'max' => 255]
-           [['no_surat', 'tema', 'jenis'], 'string', 'max' => 255]
+           [['no_surat'], 'string', 'max' => 255],
+           [['no_surat','tema', 'jenis'], 'string', 'max' => 255]
        ];
    }
    

@@ -35,13 +35,14 @@ $this->params['breadcrumbs'][] = $this->title;
 			[
              'attribute' => 'perusahaan_id',
              'label'=>'Nama Perusahaan',
-			 'filter'=>array('1'=>'MSU','0'=>'Off'),
+			 'filter'=>array('1'=>'MSU','2'=>'SKR','3'=>'SKI','4'=>'TSL','5'=>'PLATINUM','6'=>'SIG'),
              'value'=>'perusahaan.nama_perusahaan'
            ],
             
 			[
               'attribute' => 'divisi_id',
              'label'=>'Nama Divisi',
+			  'filter'=>array('1'=>'PROD','2'=>'KU','3'=>'LG','4'=>'MRK','5'=>'PRC','6'=>'UM'),
              'value'=>function($data) {return $data->divisi->nama_divisi;},
            ],
             
@@ -50,14 +51,15 @@ $this->params['breadcrumbs'][] = $this->title;
 			 
             
 			  [
-              'attribute' => 'jabatan_id',
+             'attribute' => 'jabatan_id',
              'label'=>'Jabatan',
+			  'filter'=>array('1'=>'DIR','2'=>'MGR','3'=>'SM'),
              'value'=>function($data) {return $data->jabatan->nama_jabatan;},
            ],
 		   
 		   
-			  [
-              'attribute' => 'penyimpanan_id',
+			[
+             'attribute' => 'penyimpanan_id',
              'label'=>'Penyimpanan',
              'value'=>function($data) {return $data->penyimpanan->tempat_penyimpanan;},
            ],
@@ -65,7 +67,14 @@ $this->params['breadcrumbs'][] = $this->title;
 		   
 		   
             
-			  'jenis',
+			 
+			  [
+              'attribute' => 'jenis',
+             'label'=>'Tipe Surat',
+			  'filter'=>array('Masuk'=>'Masuk','Keluar'=>'Keluar'),
+             
+           ],
+			  
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
