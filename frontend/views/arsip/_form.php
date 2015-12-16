@@ -19,16 +19,18 @@ use kartik\time\TimePicker;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'no_surat')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'no_sura')->textInput(['maxlength' => true]) ?>
+	
 
     <?= $form->field($model, 'tanggal_simpan')->textInput() ?>
+	
 	<?php
      	DatePicker::widget([
        'model' => $model,
        'attribute' => 'tanggal_simpan',
        'language' => 'en',
        'dateFormat' => 'yyyy-MM-dd',
-   ]);
+     ]);
 
   ?>
 
@@ -50,6 +52,8 @@ use kartik\time\TimePicker;
     <?php $dataList=ArrayHelper::map(Penyimpanan::find()->asArray()->all(), 'penyimpanan_id', 'tempat_penyimpanan');?>
 	 <?=$form->field($model, 'penyimpanan_id')->dropDownList($dataList, 
          ['prompt'=>'-Pilih Penyimpanan-']) ?>
+    
+	
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -64,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		   
 		   
             
-			  'tanggal_simpan',
+			  'jenis',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

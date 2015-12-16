@@ -29,15 +29,18 @@ class Arsip extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
-        return [
-            [['no_surat', 'tanggal_simpan', 'perusahaan_id', 'divisi_id', 'tema', 'jabatan_id', 'penyimpanan_id'], 'required'],
-            [['tanggal_simpan'], 'safe'],
-            [['perusahaan_id', 'divisi_id', 'jabatan_id', 'penyimpanan_id'], 'integer'],
-            [['no_surat'], 'string', 'max' => 255]
-        ];
-    }
+   public function rules()
+   {
+       return [
+           [['no_surat', 'tanggal_simpan', 'perusahaan_id', 'divisi_id', 'tema', 'jabatan_id', 'penyimpanan_id'], 'required'],
+           [['no_surat', 'tanggal_simpan', 'perusahaan_id', 'divisi_id', 'tema', 'jabatan_id', 'penyimpanan_id', 'jenis'], 'required'],
+           [['tanggal_simpan'], 'safe'],
+           [['perusahaan_id', 'divisi_id', 'jabatan_id', 'penyimpanan_id'], 'integer'],
+           [['no_surat'], 'string', 'max' => 255]
+           [['no_surat', 'tema', 'jenis'], 'string', 'max' => 255]
+       ];
+   }
+   
  public function getDivisi()
     {
         return $this->hasOne(Divisi::className(), ['divisi_id' => 'divisi_id']);
@@ -72,6 +75,7 @@ class Arsip extends \yii\db\ActiveRecord
             'tema' => 'Tema',
             'jabatan_id' => 'Jabatan',
             'penyimpanan_id' => 'Penyimpanan',
+			'jenis'=>'Jenis',
         ];
     }
 }
