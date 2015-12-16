@@ -35,6 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			[
              'attribute' => 'perusahaan_id',
              'label'=>'Nama Perusahaan',
+			 'filter'=>array('1'=>'MSU','0'=>'Off'),
              'value'=>'perusahaan.nama_perusahaan'
            ],
             
