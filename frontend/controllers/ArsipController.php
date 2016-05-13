@@ -58,12 +58,24 @@ class ArsipController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id)
     {
         $model = new Arsip();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        //$model->perusahaan_id = $id;
+        if ($model->load(Yii::$app->request->post())) {
+                 //$model->perusahaan_id = $id;
+         if ($model->save())
+         {
+           echo 'berhasil';
+                      return $this->redirect(['view', 'id' => $model->id]);
+         } else {
+          echo '<pre>Gagal : <br/>';
+          print_r($model->getErrors());
+          print_r($_POST);
+          echo '</pre>';
+         }
+
         } else {
             return $this->render('create', [
                 'model' => $model,
