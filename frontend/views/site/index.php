@@ -16,11 +16,11 @@ $this->title = 'My Yii Application';
 $projects = Perusahaan::find()->All();
 foreach($projects as $project){
 
- echo '<p><a class="btn btn-default" href="'. Url::toRoute(['siggaji/rekap?id=' . $project->perusahaan_id.'&start_period=&finish_period=']) . '" >'.$project->nama_perusahaan.' &raquo;</a></p>';
+ echo '<p><a class="btn btn-default" href="'. Url::toRoute(['arsip/indexpt?id=' . $project->perusahaan_id]) . '" >'.$project->nama_perusahaan.' &raquo;</a></p>';
 
 }
 echo '<br/>';
- echo '<p><a class="btn btn-success" href="'. Url::toRoute(['sigproject/create']) . '" >Tambah PT &raquo;</a></p>';
+ //echo '<p><a class="btn btn-success" href="'. Url::toRoute(['sigproject/create']) . '" >Tambah PT &raquo;</a></p>';
 
 ?>
 

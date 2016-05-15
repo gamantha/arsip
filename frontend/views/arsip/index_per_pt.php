@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Simpan Surat', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Simpan Surat', ['arsip/create/' . $_GET['id']], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'no_surat',
 
-
+/*
 			[
              'attribute' => 'perusahaan_id',
              'label'=>'Nama Perusahaan',
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
 'filter' => ArrayHelper::map(Perusahaan::find()->asArray()->All(), 'perusahaan_id', 'nama_perusahaan'),
              'value'=>'perusahaan.nama_perusahaan'
            ],
-
+*/
 			[
               'attribute' => 'divisi_id',
              'label'=>'Nama Divisi',
@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			[
              'attribute' => 'penyimpanan_id',
              'label'=>'Penyimpanan',
-     'filter' => ArrayHelper::map(Penyimpanan::find()->asArray()->All(), 'penyimpanan_id', 'nama_penyimpanan'),
+     'filter' => ArrayHelper::map(Penyimpanan::find()->asArray()->All(), 'penyimpanan_id', 'tempat_penyimpanan'),
              'value'=>function($data) {return $data->penyimpanan->tempat_penyimpanan;},
            ],
 
@@ -82,16 +82,38 @@ $this->params['breadcrumbs'][] = $this->title;
 			  'filter'=>array('Masuk'=>'Masuk','Keluar'=>'Keluar'),
 
            ],
-           'dikirim_ke',
+           [
+                    'attribute' => 'dikirim_ke',
+                   'label'=>'dikirim_ke',
+      			  //'filter'=>array('Masuk'=>'Masuk','Keluar'=>'Keluar'),
+           'filter' =>'',
+
+                 ],
+
+                 [
+    'attribute' => 'created_at',
+    'value' => 'created_at',
+    'filter' => \yii\jui\DatePicker::widget(['language' => 'en', 'dateFormat' => 'dd-MM-yyyy']),
+    'format' => 'html',
+],
+                 'modified_at',
+                 //'receipt',
+
+                 [
+                         'attribute' => 'receipt',
+                         'label'=>'Tanda terima',
+            			  'filter'=>array('not required'=>'not required','required - sent'=>'required - sent','required - received'=>'required - received'),
+
+                         'value'=>function($data) {return $data->receipt;},
+                       ],
 
 
          //   ['class' => 'yii\grid\ActionColumn'],
 
             [
             'class' => 'yii\grid\ActionColumn',
-          //  'contentOptions' => ['style' => 'width:260px;'],
             'header'=>'Action',
-            'template' => '{view} {update} {delete} {upload} {download}',
+            'template' => '{view} {update} {upload} {download}',
             'buttons' => [
                 'download' => function ($url, $model) {
 

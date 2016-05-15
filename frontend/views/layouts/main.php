@@ -36,62 +36,67 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    
-	
 
-	
-	
-	
-	
+
+
+
+
+
+
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
-		
-		$menuItems[] = 
-      
-		['label' => 'Surat',  
+
+if(isset( $this->params['addMenuItem']  )) {
+		$menuItems[] =
+$this->params['addMenuItem'];
+}
+
+      /*
+		['label' => 'Surat',
         'url' => ['#'],
         'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
         'items' => [
             ['label' => 'Input Surat', 'url' =>['/arsip/create']],
             ['label' => 'Cari Surat', 'url' => ['/arsip/index']],
-            ['label' => 'Manage', 'url' => ['manage/index']],			
-            
+            ['label' => 'Manage', 'url' => ['manage/index']],
+
         ],
       ];
+      */
 
-    	$menuItems[] = 
-      
-		['label' => 'Seminar',  
+    	$menuItems[] =
+
+		['label' => 'Seminar',
         'url' => ['#'],
         'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
         'items' => [
             ['label' => 'can Aya isina', 'url' =>['#']],
             ['label' => 'can aya isina', 'url' => ['#']],
-            ['label' => 'can aya isina', 'url' => ['#']],			
-            
+            ['label' => 'can aya isina', 'url' => ['#']],
+
         ],
       ];
-	
-	
-		
+
+
+
 	        //$menuItems[] = ['label' => 'Logout (' . Yii::$app->user->identity->username . ')','url' => ['/site/logout'],'linkOptions' => ['data-method' => 'post']];
 			//$menuItems[] = ['label' => 'Keluar (' . Yii::$app->user->identity->username . ')','url' => ['/site/logout'],'linkOptions' => ['data-method' => 'post']];
 			$menuItems[] = ['label' => 'LogOut (' . Yii::$app->user->identity->username . ')','url' => ['/site/logout'],'linkOptions' => ['data-method' => 'post']];
     }
-	
+
 
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
 		'encodeLabels' => false,
     ]);
-	
-	
+
+
     NavBar::end();
     ?>
-	
+
 
     <div class="container">
         <?= Breadcrumbs::widget([

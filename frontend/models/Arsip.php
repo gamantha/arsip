@@ -33,10 +33,11 @@ class Arsip extends \yii\db\ActiveRecord
    {
 
     return [
-       [['id', 'no_surat', 'tanggal_simpan', 'perusahaan_id', 'divisi_id', 'tema', 'jabatan_id', 'penyimpanan_id', 'jenis'], 'required'],
+       [['no_surat', 'tanggal_simpan', 'perusahaan_id', 'divisi_id', 'tema', 'jabatan_id', 'penyimpanan_id', 'jenis'], 'required'],
+       [['no_surat'], 'string', 'min'=>1, 'max'=>3],
        [['id', 'perusahaan_id', 'divisi_id', 'jabatan_id', 'penyimpanan_id'], 'integer'],
        [['tanggal_simpan', 'created_at', 'modified_at'], 'safe'],
-       [['jenis'], 'string'],
+       [['jenis','receipt'], 'string'],
        [['no_surat', 'tema', 'dikirim_ke'], 'string', 'max' => 255],
        [['penyimpanan_id'], 'exist', 'skipOnError' => true, 'targetClass' => Penyimpanan::className(), 'targetAttribute' => ['penyimpanan_id' => 'penyimpanan_id']],
        [['divisi_id'], 'exist', 'skipOnError' => true, 'targetClass' => Divisi::className(), 'targetAttribute' => ['divisi_id' => 'divisi_id']],
@@ -91,11 +92,12 @@ class Arsip extends \yii\db\ActiveRecord
             'jabatan_id' => 'Jabatan',
             'penyimpanan_id' => 'Penyimpanan',
 			'jenis'=>'Jenis',
+   'receipt' => Yii::t('app', 'Receipt'),
         ];
     }
 
 
- 
+
       /**
        * @inheritdoc
        * @return ArsipQuery the active query used by this AR class.

@@ -35,9 +35,6 @@ use kartik\time\TimePicker;
   ?>
 
 
-	<?php $dataList=ArrayHelper::map(Perusahaan::find()->asArray()->all(), 'perusahaan_id', 'nama_perusahaan');?>
-	 <?=$form->field($model, 'perusahaan_id')->dropDownList($dataList,
-         ['prompt'=>'-Pilih Perusahaan-']) ?>
 
     <?php $dataList=ArrayHelper::map(Divisi::find()->asArray()->all(), 'divisi_id', 'nama_divisi');?>
 	 <?=$form->field($model, 'divisi_id')->dropDownList($dataList,
@@ -56,6 +53,8 @@ use kartik\time\TimePicker;
 	 <?= $form->field($model, 'jenis')->dropDownList(['masuk' => 'Masuk', 'keluar' => 'Keluar'],['prompt'=>'Pilih Jenis Surat']); ?>
 
       <?= $form->field($model, 'dikirim_ke')->textInput(['maxlength' => true]) ?>
+
+      	   <?= $form->field($model, 'receipt')->dropDownList([ 'required - received' => 'Required - received', 'required - sent' => 'Required - sent', 'not required' => 'Not required', ], ['prompt' => '']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

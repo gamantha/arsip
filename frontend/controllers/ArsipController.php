@@ -8,6 +8,11 @@ use app\models\ArsipSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\jui\Menu;
+use yii\base\InvalidParamException;
+use yii\web\BadRequestHttpException;
+use yii\filters\AccessControl;
+use yii\db\Expression;
 
 /**
  * ArsipController implements the CRUD actions for Arsip model.
@@ -17,6 +22,23 @@ class ArsipController extends Controller
     public function behaviors()
     {
         return [
+         'access' => [
+             'class' => AccessControl::className(),
+             'only' => ['logout', 'signup','indexpt'],
+             'rules' => [
+                 /*[
+                     'actions' => ['signup'],
+                     'allow' => true,
+                     'roles' => ['?'],
+                 ],
+                 */
+                 [
+                     'actions' => ['indexpt'],
+                     'allow' => true,
+                     'roles' => ['@'],
+                 ],
+             ],
+         ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -25,6 +47,8 @@ class ArsipController extends Controller
             ],
         ];
     }
+
+
 
     /**
      * Lists all Arsip models.
@@ -35,10 +59,47 @@ class ArsipController extends Controller
         $searchModel = new ArsipSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+/*
+         return $this->render('index', [
+             'searchModel' => $searchModel,
+             'dataProvider' => $dataProvider,
+         ]);
+*/
+
+echo 'not valid URL';
+    }
+
+    public function actionIndexpt($id)
+    {
+
+     $searchModel = new ArsipSearch();
+     $searchparams = Yii::$app->request->queryParams;
+     $searchparams["ArsipSearch"]["perusahaan_id"] = $id ;
+    echo '<br/><br/><br/><pre>';
+//print_r($searchparams);
+    echo '</pre>';
+
+    $this->view->params['addMenuItem'] = 		['label' => 'Surat',
+            'url' => ['#'],
+            'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
+            'items' => [
+                ['label' => 'Input Surat', 'url' =>['/arsip/create/' . $id]],
+                ['label' => 'Cari Surat', 'url' => ['/arsip/indexpt/' . $id]],
+                ['label' => 'Manage', 'url' => ['manage/index/' . $id]],
+
+            ],
+          ];
+
+
+
+     $dataProvider = $searchModel->search($searchparams);
+
+
+      return $this->render('index_per_pt', [
+          'searchModel' => $searchModel,
+          'dataProvider' => $dataProvider,
+      ]);
+
     }
 
     /**
@@ -48,6 +109,17 @@ class ArsipController extends Controller
      */
     public function actionView($id)
     {
+     $this->view->params['addMenuItem'] = 		['label' => 'Surat',
+             'url' => ['#'],
+             'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
+             'items' => [
+                 ['label' => 'Input Surat', 'url' =>['/arsip/create/' . $id]],
+                 ['label' => 'Cari Surat', 'url' => ['/arsip/indexpt/' . $id]],
+                 ['label' => 'Manage', 'url' => ['manage/index/' . $id]],
+
+             ],
+           ];
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -62,9 +134,21 @@ class ArsipController extends Controller
     {
         $model = new Arsip();
 
+        $this->view->params['addMenuItem'] = 		['label' => 'Surat',
+                'url' => ['#'],
+                'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
+                'items' => [
+                    ['label' => 'Input Surat', 'url' =>['/arsip/create/' . $id]],
+                    ['label' => 'Cari Surat', 'url' => ['/arsip/indexpt/' . $id]],
+                    ['label' => 'Manage', 'url' => ['manage/index/' . $id]],
+
+                ],
+              ];
+
         //$model->perusahaan_id = $id;
         if ($model->load(Yii::$app->request->post())) {
-                 //$model->perusahaan_id = $id;
+                 $model->perusahaan_id = $id;
+                  $model->created_at = new Expression('NOW()');
          if ($model->save())
          {
            echo 'berhasil';
@@ -91,6 +175,17 @@ class ArsipController extends Controller
      */
     public function actionUpdate($id)
     {
+     $this->view->params['addMenuItem'] = 		['label' => 'Surat',
+             'url' => ['#'],
+             'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
+             'items' => [
+                 ['label' => 'Input Surat', 'url' =>['/arsip/create/' . $id]],
+                 ['label' => 'Cari Surat', 'url' => ['/arsip/indexpt/' . $id]],
+                 ['label' => 'Manage', 'url' => ['manage/index/' . $id]],
+
+             ],
+           ];
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

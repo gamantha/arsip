@@ -18,8 +18,10 @@ class ArsipSearch extends Arsip
     public function rules()
     {
         return [
-            [['id','divisi_id',  'jabatan_id','penyimpanan_id'], 'integer'],
-            [['no_surat', 'tanggal_simpan','tema', 'perusahaan_id','jenis'], 'safe'],
+           // [['id','divisi_id',  'jabatan_id','penyimpanan_id'], 'integer'],
+           // [['no_surat', 'tanggal_simpan','tema', 'perusahaan_id','jenis'], 'safe'],
+           [['id', 'perusahaan_id', 'divisi_id', 'jabatan_id', 'penyimpanan_id'], 'integer'],
+[['no_surat', 'tanggal_simpan', 'tema', 'jenis', 'dikirim_ke', 'created_at', 'modified_at', 'receipt'], 'safe'],
         ];
     }
 
@@ -42,7 +44,7 @@ class ArsipSearch extends Arsip
     public function search($params)
     {
         $query = Arsip::find();
-		
+
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -65,9 +67,16 @@ class ArsipSearch extends Arsip
             'jabatan_id' => $this->jabatan_id,
             'penyimpanan_id' => $this->penyimpanan_id,
 			'jenis' => $this->jenis,
+   'created_at' => $this->created_at,
+'modified_at' => $this->modified_at,
         ]);
 
-        $query->andFilterWhere(['like', 'no_surat', $this->no_surat]);
+        //$query->andFilterWhere(['like', 'no_surat', $this->no_surat]);
+        $query->andFilterWhere(['like', 'no_surat', $this->no_surat])
+  ->andFilterWhere(['like', 'tema', $this->tema])
+  ->andFilterWhere(['like', 'jenis', $this->jenis])
+  ->andFilterWhere(['like', 'dikirim_ke', $this->dikirim_ke])
+  ->andFilterWhere(['like', 'receipt', $this->receipt]);
 
         return $dataProvider;
     }
