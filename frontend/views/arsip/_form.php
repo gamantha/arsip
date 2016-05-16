@@ -20,10 +20,10 @@ use kartik\time\TimePicker;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'no_surat')->textInput(['maxlength' => true]) ?>
-	
+
 
     <?= $form->field($model, 'tanggal_simpan')->textInput() ?>
-	
+
 	<?php
      	DatePicker::widget([
        'model' => $model,
@@ -34,26 +34,27 @@ use kartik\time\TimePicker;
 
   ?>
 
-    
-	<?php $dataList=ArrayHelper::map(Perusahaan::find()->asArray()->all(), 'perusahaan_id', 'nama_perusahaan');?>
-	 <?=$form->field($model, 'perusahaan_id')->dropDownList($dataList, 
-         ['prompt'=>'-Pilih Perusahaan-']) ?>
+
 
     <?php $dataList=ArrayHelper::map(Divisi::find()->asArray()->all(), 'divisi_id', 'nama_divisi');?>
-	 <?=$form->field($model, 'divisi_id')->dropDownList($dataList, 
+	 <?=$form->field($model, 'divisi_id')->dropDownList($dataList,
          ['prompt'=>'-Pilih Divisi-']) ?>
 
     <?= $form->field($model, 'tema')->textInput() ?>
 
    <?php $dataList=ArrayHelper::map(Jabatan::find()->asArray()->all(), 'jabatan_id', 'nama_jabatan');?>
-	 <?=$form->field($model, 'jabatan_id')->dropDownList($dataList, 
+	 <?=$form->field($model, 'jabatan_id')->dropDownList($dataList,
          ['prompt'=>'-Pilih Jabatan-']) ?>
 
     <?php $dataList=ArrayHelper::map(Penyimpanan::find()->asArray()->all(), 'penyimpanan_id', 'tempat_penyimpanan');?>
-	 <?=$form->field($model, 'penyimpanan_id')->dropDownList($dataList, 
+	 <?=$form->field($model, 'penyimpanan_id')->dropDownList($dataList,
          ['prompt'=>'-Pilih Penyimpanan-']) ?>
-    
+
 	 <?= $form->field($model, 'jenis')->dropDownList(['masuk' => 'Masuk', 'keluar' => 'Keluar'],['prompt'=>'Pilih Jenis Surat']); ?>
+
+      <?= $form->field($model, 'dikirim_ke')->textInput(['maxlength' => true]) ?>
+
+      	   <?= $form->field($model, 'receipt')->dropDownList([ 'required - received' => 'Required - received', 'required - sent' => 'Required - sent', 'not required' => 'Not required', ], ['prompt' => '']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
