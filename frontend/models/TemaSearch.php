@@ -43,6 +43,8 @@ class TemaSearch extends Tema
     {
         $query = Tema::find();
 
+        // add conditions that should always apply here
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -55,6 +57,7 @@ class TemaSearch extends Tema
             return $dataProvider;
         }
 
+        // grid filtering conditions
         $query->andFilterWhere([
             'tema_id' => $this->tema_id,
         ]);

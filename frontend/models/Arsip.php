@@ -33,13 +33,14 @@ class Arsip extends \yii\db\ActiveRecord
    {
 
     return [
-       [['no_surat', 'tanggal_simpan', 'perusahaan_id', 'divisi_id', 'tema', 'jabatan_id', 'penyimpanan_id', 'jenis'], 'required'],
+       [['no_surat', 'tanggal_simpan', 'perusahaan_id', 'divisi_id', 'tema_id', 'jabatan_id', 'penyimpanan_id', 'jenis'], 'required'],
        [['no_surat'], 'string', 'min'=>1, 'max'=>3],
-       [['id', 'perusahaan_id', 'divisi_id', 'jabatan_id', 'penyimpanan_id'], 'integer'],
+       [['id', 'perusahaan_id', 'divisi_id', 'jabatan_id', 'tema_id','penyimpanan_id'], 'integer'],
        [['tanggal_simpan', 'created_at', 'modified_at'], 'safe'],
        [['jenis','receipt'], 'string'],
-       [['no_surat', 'tema', 'dikirim_ke'], 'string', 'max' => 255],
+       [['no_surat', 'dikirim_ke'], 'string', 'max' => 255],
        [['penyimpanan_id'], 'exist', 'skipOnError' => true, 'targetClass' => Penyimpanan::className(), 'targetAttribute' => ['penyimpanan_id' => 'penyimpanan_id']],
+       [['tema_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tema::className(), 'targetAttribute' => ['tema_id' => 'tema_id']],
        [['divisi_id'], 'exist', 'skipOnError' => true, 'targetClass' => Divisi::className(), 'targetAttribute' => ['divisi_id' => 'divisi_id']],
        [['jabatan_id'], 'exist', 'skipOnError' => true, 'targetClass' => Jabatan::className(), 'targetAttribute' => ['jabatan_id' => 'jabatan_id']],
        [['perusahaan_id'], 'exist', 'skipOnError' => true, 'targetClass' => Perusahaan::className(), 'targetAttribute' => ['perusahaan_id' => 'perusahaan_id']],
@@ -57,7 +58,7 @@ class Arsip extends \yii\db\ActiveRecord
        */
    }
 
- public function getDivisi()
+    public function getDivisi()
     {
         return $this->hasOne(Divisi::className(), ['divisi_id' => 'divisi_id']);
     }
@@ -77,6 +78,11 @@ class Arsip extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Penyimpanan::className(), ['penyimpanan_id' => 'penyimpanan_id']);
     }
+    
+    public function getTema()
+    {
+        return $this->hasOne(Tema::className(), ['tema_id' => 'tema_id']);
+    }
     /**
      * @inheritdoc
      */
@@ -88,11 +94,12 @@ class Arsip extends \yii\db\ActiveRecord
             'tanggal_simpan' => 'Tanggal',
             'perusahaan_id' => 'Perusahaan',
             'divisi_id' => 'Divisi',
-            'tema' => 'Tema',
+            'dikirim_ke' => 'Dikirim Ke',
+            'tema_id' => 'Tema',
             'jabatan_id' => 'Jabatan',
             'penyimpanan_id' => 'Penyimpanan',
 			'jenis'=>'Jenis',
-   'receipt' => Yii::t('app', 'Receipt'),
+            'receipt' => Yii::t('app', 'Receipt'),
         ];
     }
 

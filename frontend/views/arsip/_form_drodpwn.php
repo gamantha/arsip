@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Perusahaan;
 use app\models\Divisi;
+use app\models\Tema;
 use app\models\Jabatan;
 use app\models\Penyimpanan;
 
@@ -39,7 +40,10 @@ use app\models\Penyimpanan;
 	 <?=$form->field($model, 'jabatan_id')->dropDownList($dataList, 
          ['prompt'=>'-Pilih Jabatan-']) ?>
 	
-	<?= $form->field($model, 'tema')->textInput(['maxlength' => true]) ?>
+	<?php $dataList=ArrayHelper::map(Jabatan::find()->asArray()->all(), 'tema_id', 'tema');?>
+	 <?=$form->field($model, 'tema_id')->dropDownList($dataList, 
+         ['prompt'=>'-Pilih Tema-']) ?>
+	
     
 	
 	 <?php $dataList=ArrayHelper::map(Penyimpanan::find()->asArray()->all(), 'penyimpanan_id', 'tempat_penyimpanan');?>

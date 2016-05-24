@@ -6,6 +6,7 @@ use yii\helpers\ArrayHelper;
 use app\models\Perusahaan;
 use app\models\Divisi;
 use app\models\Jabatan;
+use app\models\Tema;
 use app\models\Penyimpanan;
 use yii\jui\DatePicker;
 use kartik\time\TimePicker;
@@ -40,7 +41,9 @@ use kartik\time\TimePicker;
 	 <?=$form->field($model, 'divisi_id')->dropDownList($dataList,
          ['prompt'=>'-Pilih Divisi-']) ?>
 
-    <?= $form->field($model, 'tema')->textInput() ?>
+    <?php $dataList=ArrayHelper::map(Tema::find()->asArray()->all(), 'tema_id', 'tema');?>
+	 <?=$form->field($model, 'tema_id')->dropDownList($dataList,
+         ['prompt'=>'-Pilih Tema-']) ?>
 
    <?php $dataList=ArrayHelper::map(Jabatan::find()->asArray()->all(), 'jabatan_id', 'nama_jabatan');?>
 	 <?=$form->field($model, 'jabatan_id')->dropDownList($dataList,

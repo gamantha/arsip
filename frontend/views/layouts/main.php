@@ -53,7 +53,7 @@ if(isset( $this->params['addMenuItem']  )) {
 $this->params['addMenuItem'];
 }
 
-      /*
+      
 		['label' => 'Surat',
         'url' => ['#'],
         'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
@@ -64,7 +64,7 @@ $this->params['addMenuItem'];
 
         ],
       ];
-      */
+      
 
     	$menuItems[] =
 

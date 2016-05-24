@@ -1,5 +1,5 @@
 <?php
-
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
@@ -11,18 +11,22 @@ $this->title = 'My Yii Application';
       <table border="0" cellspacing="2"  cellpadding="7">  
 <tr>
 
-<td><p><a class="btn btn-lg btn-success" href="http://localhost/arsip/frontend/web/index.php?r=perusahaan/index" width="100">Tambah Perusahaan</a></p> </td>
+<td><p><a class="btn btn-lg btn-success" href="<?php echo Url::toRoute(['perusahaan/index']); ?>" width="100">Tambah Perusahaan</a></p> </td>
 <td ><p style="color:white">Arsip</p></td>
-<td ><p><a class="btn btn-lg btn-success" href="http://localhost/arsip/frontend/web/index.php?r=jabatan/index" width="100">Tambah Jabatan</a></p> </td>
+<td ><p><a class="btn btn-lg btn-success" href="<?php echo Url::toRoute(['jabatan/index']); ?>" width="100">Tambah Jabatan</a></p> </td>
 </tr>
       
 
 <tr>
 
-<td> <p><a class="btn btn-lg btn-success" href="http://localhost/arsip/frontend/web/index.php?r=divisi/index" width="100">Tambah Divisi</a></p> </td>
+<td> <p><a class="btn btn-lg btn-success" href="<?php echo Url::toRoute(['divisi/index']); ?>" width="100">Tambah Divisi</a></p> </td>
 <td ><p style="color:white">Arsip</p></td>
-<td ><p><a class="btn btn-lg btn-success" href="http://localhost/arsip/frontend/web/index.php?r=penyimpanan/index" width="100">Tambah Penyimpanan</a></p> </td>
+<td ><p><a class="btn btn-lg btn-success" href="<?php echo Url::toRoute(['penyimpanan/index']); ?>" width="100">Tambah Penyimpanan</a></p> </td>
+
 </tr>       
+<tr>
+<td ><p><a class="btn btn-lg btn-success" href="<?php echo Url::toRoute(['tema/index']); ?>" width="100">Tambah Tema</a></p> </td>          
+</tr>
 		 
 		  
 		   </table>

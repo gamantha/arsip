@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use app\models\Perusahaan;
 use app\models\Divisi;
+use app\models\Tema;
 use app\models\Jabatan;
 use app\models\Upload;
 use app\models\Penyimpanan;
@@ -52,7 +53,13 @@ $this->params['breadcrumbs'][] = $this->title;
              'value'=>function($data) {return $data->divisi->nama_divisi;},
            ],
 
-			'tema',
+			[
+              'attribute' => 'tema_id',
+             'label'=>'Nama Tema',
+			  //'filter'=>array('1'=>'PROD','2'=>'KU','3'=>'LG','4'=>'MRK','5'=>'PRC','6'=>'UM'),
+     'filter' => ArrayHelper::map(Tema::find()->asArray()->All(), 'tema_id', 'tema'),
+             'value'=>function($data) {return $data->tema->tema;},
+           ],
 
 
 

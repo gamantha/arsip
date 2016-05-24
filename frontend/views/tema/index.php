@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\TemaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Temas';
+$this->title = 'Tema';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tema-index">

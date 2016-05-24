@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use app\models\Perusahaan;
 use app\models\Divisi;
+use app\models\Tema;
 use app\models\Jabatan;
 use app\models\Upload;
 use app\models\Penyimpanan;
@@ -52,7 +53,13 @@ $this->params['breadcrumbs'][] = $this->title;
              'value'=>function($data) {return $data->divisi->nama_divisi;},
            ],
 
-			'tema',
+			[
+              'attribute' => 'tema_id',
+             'label'=>'Nama Tema',
+			  //'filter'=>array('1'=>'PROD','2'=>'KU','3'=>'LG','4'=>'MRK','5'=>'PRC','6'=>'UM'),
+     'filter' => ArrayHelper::map(Tema::find()->asArray()->All(), 'tema_id', 'tema'),
+             'value'=>function($data) {return $data->tema->tema;},
+           ],
 
 
 
@@ -102,9 +109,19 @@ $this->params['breadcrumbs'][] = $this->title;
                  [
                          'attribute' => 'receipt',
                          'label'=>'Tanda terima',
-            			  'filter'=>array('not required'=>'not required','required - sent'=>'required - sent','required - received'=>'required - received'),
-
-                         'value'=>function($data) {return $data->receipt;},
+                         'format'=>'raw',
+                         
+                        'filter'=>array('not required'=>'not required','required - sent'=>'required - sent','required - received'=>'required - received'),
+                     //'options' => [ 'style' => 'background-color:red' ],
+                         'value'=>function($data) {
+                             /* $values=[
+                                 'not required'=>'#ff0000',
+                                 'required - sent'=>'#ff0000',
+                                 'required - received'=>'#ff0000',
+                             ];*/
+                             //return Html::tag('span', $data->receipt, ['style'=>['background-color:' . (isset($values[$data->receipt]) ? $values[$data->receipt] : 'red')]]);
+                             return $data->receipt;
+                         },
                        ],
 
 
