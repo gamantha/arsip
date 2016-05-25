@@ -110,7 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
                          'attribute' => 'receipt',
                          'label'=>'Tanda terima',
                          'format'=>'raw',
-                         
+
                         'filter'=>array('not required'=>'not required','required - sent'=>'required - sent','required - received'=>'required - received'),
                      //'options' => [ 'style' => 'background-color:red' ],
                          'value'=>function($data) {
@@ -119,8 +119,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                  'required - sent'=>'#ff0000',
                                  'required - received'=>'#ff0000',
                              ];*/
-                             //return Html::tag('span', $data->receipt, ['style'=>['background-color:' . (isset($values[$data->receipt]) ? $values[$data->receipt] : 'red')]]);
-                             return $data->receipt;
+                             if ($data->receipt == 'required - sent') {
+                              $color = 'red';
+                             } else if ($data->receipt == 'required - received') {
+                              $color = 'green';
+                             }
+                           //  return '<span style="color:'.$color.';"> '.$data->receipt.'</span>';
+                              return Html::tag('span', $data->receipt, ['style'=>'background-color:' . (isset($values[$data->receipt]) ? $values[$data->receipt] : 'red')]);
+//return Html::tag('span', $data->receipt,['style' => 'color:red;']);
+
                          },
                        ],
 
