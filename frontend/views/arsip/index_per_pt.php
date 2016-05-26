@@ -9,6 +9,7 @@ use app\models\Tema;
 use app\models\Jabatan;
 use app\models\Upload;
 use app\models\Penyimpanan;
+use kartik\mpdf\Pdf;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ArsipSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -124,8 +125,8 @@ $this->params['breadcrumbs'][] = $this->title;
                              } else if ($data->receipt == 'required - received') {
                               $color = 'green';
                              }
-                           //  return '<span style="color:'.$color.';"> '.$data->receipt.'</span>';
-                              return Html::tag('span', $data->receipt, ['style'=>'background-color:' . (isset($values[$data->receipt]) ? $values[$data->receipt] : 'red')]);
+                           return '<span style="background-color:'.$color.';"> '.$data->receipt.'</span>';
+                           //   return Html::tag('span', $data->receipt, ['style'=>'background-color:' . (isset($values[$data->receipt]) ? $values[$data->receipt] : 'red')]);
 //return Html::tag('span', $data->receipt,['style' => 'color:red;']);
 
                          },
@@ -163,5 +164,13 @@ return (Html::a('<span class="fa fa-search"></span>upload', '?r=upload/upload&id
 
         ],
     ]); ?>
+    <p>
+    <?= Html::a('<i class="fa glyphicon glyphicon-print"></i> Export to PDF', ['arsip/mpdf-demo-1'], [
+        'class'=>'btn btn-danger', 
+        'target'=>'_blank', 
+        'data-toggle'=>'tooltip', 
+        'title'=>'Will open the generated PDF file in a new window'
+    ]); ?>
+    </p>
 
 </div>

@@ -9,7 +9,9 @@ use app\models\Jabatan;
 use app\models\Tema;
 use app\models\Penyimpanan;
 use yii\jui\DatePicker;
+use kartik\file\FileInput;
 use kartik\time\TimePicker;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Arsip */
@@ -59,10 +61,26 @@ use kartik\time\TimePicker;
 
       	   <?= $form->field($model, 'receipt')->dropDownList([ 'required - received' => 'Required - received', 'required - sent' => 'Required - sent', 'not required' => 'Not required', ], ['prompt' => '']) ?>
 
+    <?php
+echo '<label class="control-label">Upload Document</label>';
+print_r(Url::to(['site/doc']));
+echo FileInput::widget([
+    'name' => 'attachment_48',
+    'pluginOptions' => [
+        'uploadUrl' => Url::to(['doc']),
+        
+        'maxFileCount' => 10
+    ]
+]); ?>
+    <br>
+    <br>
+    
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
+
+    
     <?php ActiveForm::end(); ?>
 
 </div>

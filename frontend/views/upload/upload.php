@@ -1,5 +1,7 @@
 <?php
 use yii\widgets\ActiveForm;
+use app\models\Upload;
+
 ?>
 
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
