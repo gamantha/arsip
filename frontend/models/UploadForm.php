@@ -10,21 +10,22 @@ class UploadForm extends Model
     /**
      * @var UploadedFile
      */
-    public $imageFile;
+    public $docFile;
 
     public function rules()
     {
         return [
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            [['docFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'docx, xlsx, doc, xls, jpg, png'],
         ];
     }
 
-    public function upload($id, $no_surat)
+    public function upload()
     {
         if ($this->validate()) {
-          $filename = $id . '-' . $no_surat . '-' . $this->imageFile->baseName ;
+            $model = new File();
+            $filename = $this->docFile->baseName ;
          //   $this->imageFile->saveAs('uploads/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
-            $this->imageFile->saveAs('uploads/surat/' . $filename . '.' . $this->imageFile->extension);
+            $this->docFile->saveAs('uploads/surat/' . 'roo' . '.' . $filename . '.' . $this->docFile->extension);
             return true;
         } else {
             return false;

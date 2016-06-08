@@ -6,6 +6,7 @@ use yii\helpers\ArrayHelper;
 use app\models\Perusahaan;
 use app\models\Divisi;
 use app\models\Jabatan;
+use app\models\File;
 use app\models\Tema;
 use app\models\Penyimpanan;
 use yii\jui\DatePicker;
@@ -61,22 +62,44 @@ use yii\helpers\Url;
 
       	   <?= $form->field($model, 'receipt')->dropDownList([ 'required - received' => 'Required - received', 'required - sent' => 'Required - sent', 'not required' => 'Not required', ], ['prompt' => '']) ?>
 
-    <?php
-echo '<label class="control-label">Upload Document</label>';
-print_r(Url::to(['site/doc']));
-echo FileInput::widget([
-    'name' => 'attachment_48',
-    'pluginOptions' => [
-        'uploadUrl' => Url::to(['doc']),
-        
-        'maxFileCount' => 10
-    ]
-]); ?>
+    
     <br>
     <br>
     
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        
+        <?php
+        
+        if($model->isNewRecord){
+          echo 'jgn tampilkan';  
+        } else {
+            $request = Yii::$app->request;
+            $id = $request->get('id');
+            echo Html::a(Yii::t('app', 'Upload File'), ['arsip/upload/', 'id' => $id], ['class' => 'btn btn-success']);
+            echo '<br>';
+            echo '<br>';
+            $filemodels=File::find()->andWhere(['arsip_id' => $model->id])->All();
+            foreach ($filemodels as $filemodel) {            
+                echo $filemodel->file_location;
+                echo '&nbsp';
+                echo '&nbsp';
+                echo '&nbsp';
+                echo Html::a(Yii::t('app', 'Download File'), ['../uploads/surat/'. $filemodel->file_location], ['class' => 'btn btn-success']);
+                echo '&nbsp';
+                echo '&nbsp';
+                echo '&nbsp';
+                echo Html::a('Delete', ['file/delete', 'id' => $filemodel->id], [
+                    'class' => 'btn btn-danger',
+                    'data' => [
+                        'confirm' => 'Are you sure you want to delete this item?',
+                        'method' => 'post',
+                    ],
+                ]);
+                echo '<br>';
+            }
+        }
+        ?>
     </div>
 
 
