@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 			[
               'attribute' => 'tema_id',
-             'label'=>'Nama Tema',
+             'label'=>'Perihal',
 			  //'filter'=>array('1'=>'PROD','2'=>'KU','3'=>'LG','4'=>'MRK','5'=>'PRC','6'=>'UM'),
      'filter' => ArrayHelper::map(Tema::find()->asArray()->All(), 'tema_id', 'tema'),
              'value'=>function($data) {return $data->tema->tema;},
@@ -92,7 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
            ],
            [
                     'attribute' => 'dikirim_ke',
-                   'label'=>'dikirim_ke',
+                   'label'=>'Dikirim ke',
       			  //'filter'=>array('Masuk'=>'Masuk','Keluar'=>'Keluar'),
            'filter' =>'',
 
@@ -101,10 +101,15 @@ $this->params['breadcrumbs'][] = $this->title;
                  [
     'attribute' => 'created_at',
     'value' => 'created_at',
-    'filter' => \yii\jui\DatePicker::widget(['language' => 'en', 'dateFormat' => 'dd-MM-yyyy']),
+    'label' => 'Dibuat pada',
+    'filter' => \yii\jui\DatePicker::widget(['model'=>$searchModel,'attribute'=>'created_at','language' => 'en', 'dateFormat' => 'yyyy-MM-dd']),
     'format' => 'html',
 ],
-                 'modified_at',
+                [
+                'attribute' => 'modified_at',
+                'value' => 'modified_at',
+                'label' => 'Diubah pada',
+                ],
                  //'receipt',
 
                  [
@@ -138,27 +143,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
             'class' => 'yii\grid\ActionColumn',
             'header'=>'Action',
-            'template' => '{view} {update} {upload} {download}',
-            'buttons' => [
-                'download' => function ($url, $model) {
-
-                 $arsipModel = Upload::find()
-                 ->andWhere(['arsip_id'=>$model->id])
-                 ->orderBy('last_update DESC')
-                 ->One();
-                if (isset($arsipModel)) {
-return (Html::a('<span class="fa fa-search"></span>download', '?r=upload/downloadsurat&id='.$model->id));
-} else {
- '';
-}
-                },
-                'upload' => function ($url, $model) {
-
-return (Html::a('<span class="fa fa-search"></span>upload', '?r=upload/upload&id='.$model->id));
-                },
-
-
-            ],
+            'template' => '{view} {update}',
            ],
 
 

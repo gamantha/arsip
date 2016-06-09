@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tema */
 
-$this->title = 'Create Tema';
+$this->title = 'Create Perihal';
 $this->params['breadcrumbs'][] = ['label' => 'Temas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

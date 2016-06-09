@@ -16,16 +16,19 @@ class UploadForm extends Model
     {
         return [
             [['docFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'docx, xlsx, doc, xls, jpg, png'],
+            
+            
         ];
     }
-
-    public function upload()
+    
+    
+    public function upload($id)
     {
         if ($this->validate()) {
-            $model = new File();
-            $filename = $this->docFile->baseName ;
+            
+            $filename = $this->docFile->baseName;
          //   $this->imageFile->saveAs('uploads/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
-            $this->docFile->saveAs('uploads/surat/' . 'roo' . '.' . $filename . '.' . $this->docFile->extension);
+            $this->docFile->saveAs('uploads/surat/' . $id . '_' . $filename . '.' . $this->docFile->extension);
             return true;
         } else {
             return false;

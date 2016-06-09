@@ -81,7 +81,10 @@ echo 'not valid URL';
      $searchparams = Yii::$app->request->queryParams;
      $searchparams["ArsipSearch"]["perusahaan_id"] = $id ;
     echo '<br/><br/><br/><pre>';
-//print_r($searchparams);
+    
+    if($_POST){
+        print_r($_POST);
+    }
     echo '</pre>';
 
     $this->view->params['addMenuItem'] = 		['label' => 'Surat',
@@ -90,7 +93,7 @@ echo 'not valid URL';
             'items' => [
                 ['label' => 'Input Surat', 'url' =>['/arsip/create/' . $id]],
                 ['label' => 'Cari Surat', 'url' => ['/arsip/indexpt/' . $id]],
-                ['label' => 'Manage', 'url' => ['manage/index/' . $id]],
+                ['label' => 'Kelola Surat', 'url' => ['manage/index/' . $id]],
 
             ],
           ];
@@ -276,16 +279,18 @@ echo 'not valid URL';
 
         if (Yii::$app->request->isPost) {
             $uploadmodel->docFile = UploadedFile::getInstance($uploadmodel, 'docFile');
-            if ($uploadmodel->upload()) {
-                    $model->file_location = $uploadmodel->docFile->baseName . '.' . $uploadmodel->docFile->extension;
+             
                     $model->created_at = new \yii\db\Expression('NOW()');
                     $model->arsip_id = $id;
+                    $model->save();
+                    $uploadmodel->upload($model->id);
+                    $model->file_location = $model->id . '_' . $uploadmodel->docFile->baseName . '.' . $uploadmodel->docFile->extension;
                     $model->save();
                     Yii::$app->getSession()->setFlash('success', 'Data Berhasil Tersimpan');
                     return $this->redirect(['arsip/update/'. $model->arsip_id]);
 
-                     }
-                    } //isPost
+            
+        } //isPost
 
         return $this->render('upload', ['uploadmodel' => $uploadmodel]);
     }

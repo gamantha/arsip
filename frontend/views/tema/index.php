@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\TemaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Tema';
+$this->title = 'Perihal';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tema-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Tema', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Perihal', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

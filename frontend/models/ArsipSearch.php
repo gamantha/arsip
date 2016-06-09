@@ -68,12 +68,17 @@ class ArsipSearch extends Arsip
             'jabatan_id' => $this->jabatan_id,
             'penyimpanan_id' => $this->penyimpanan_id,
 			'jenis' => $this->jenis,
-            'created_at' => $this->created_at,
+            'DATE(created_at)' => $this->created_at,
             'modified_at' => $this->modified_at,
         ]);
+        
+        
 
         $query->andFilterWhere(['like', 'no_surat', $this->no_surat])
 ->andFilterWhere(['like', 'jenis', $this->jenis])
+//->andFilterWhere(['<', 'created_at', $this->created_at])
+//->andFilterWhere(['>', 'created_at', $this->created_at])
+//->andFilterWhere(['between', 'modified_at', $this->modified_at])
 ->andFilterWhere(['like', 'dikirim_ke', $this->dikirim_ke])
 ->andFilterWhere(['like', 'receipt', $this->receipt]);
 

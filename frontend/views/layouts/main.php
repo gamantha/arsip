@@ -60,13 +60,13 @@ $this->params['addMenuItem'];
         'items' => [
             ['label' => 'Input Surat', 'url' =>['/arsip/create']],
             ['label' => 'Cari Surat', 'url' => ['/arsip/index']],
-            ['label' => 'Manage', 'url' => ['manage/index']],
+            ['label' => 'Kelola Surat', 'url' => ['manage/index']],
 
         ],
       ];
       
 
-    	$menuItems[] =
+    	/*$menuItems[] =
 
 		['label' => 'Seminar',
         'url' => ['#'],
@@ -77,7 +77,7 @@ $this->params['addMenuItem'];
             ['label' => 'can aya isina', 'url' => ['#']],
 
         ],
-      ];
+      ];*/
 
 
 
