@@ -95,9 +95,6 @@ echo 'not valid URL';
     $searchModel = new ArsipSearch();
     $searchparams = Yii::$app->request->queryParams;
     $searchparams["ArsipSearch"]["perusahaan_id"] = $id ;
-    echo '<br/><br/><br/><pre>';
-    $test = 'namaarif';
-    print_r($test);
     
     echo '<br>';
     

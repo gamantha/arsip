@@ -26,7 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <p>
         <?= Html::a('Simpan Surat', ['arsip/create/' . $_GET['id']], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Export to PDF', ['arsip/indexpt2?' . 'ArsipSearch[no_surat]=' . $_GET['ArsipSearch']['no_surat'] . '&ArsipSearch[divisi_id]=' . $_GET['ArsipSearch']['divisi_id'] . '&id=' . $_GET['id']], ['class' => 'btn btn-danger']) ?>
+        <?= Html::a('Export to PDF', ['arsip/indexpt2?' . 'ArsipSearch[no_surat]=' . $_GET['ArsipSearch']['no_surat'] .                                                                           '&ArsipSearch[divisi_id]=' . $_GET['ArsipSearch']['divisi_id'] .                                                                         '&ArsipSearch[tema_id]=' . $_GET['ArsipSearch']['tema_id'] .
+                                                          '&ArsipSearch[jabatan_id]=' . $_GET['ArsipSearch']['jabatan_id'] .                                                                       '&ArsipSearch[penyimpanan_id]=' . $_GET['ArsipSearch']['penyimpanan_id'] .                                                               '&ArsipSearch[jenis]=' . $_GET['ArsipSearch']['jenis'] .
+                                                          '&ArsipSearch[created_at]=' . $_GET['ArsipSearch']['created_at'] .                                                                       '&ArsipSearch[modified_at]=' . $_GET['ArsipSearch']['modified_at'] .                                                                     '&ArsipSearch[receipt]=' . $_GET['ArsipSearch']['receipt'] .
+                                                          '&id=' . $_GET['id']], ['class' => 'btn btn-danger']) ?>
     </p>
 
     <?= GridView::widget([

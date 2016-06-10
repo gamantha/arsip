@@ -16,7 +16,17 @@ $this->title = 'My Yii Application';
 $projects = Perusahaan::find()->All();
 foreach($projects as $project){
 
- echo '<p><a class="btn btn-default" href="'. Url::toRoute(['arsip/indexpt?' . 'ArsipSearch[no_surat]=' . '&ArsipSearch[divisi_id]=' . '&id=' . $project->perusahaan_id]) . '" >'.$project->nama_perusahaan.' &raquo;</a></p>';
+ echo '<p><a class="btn btn-default" href="'. Url::toRoute(['arsip/indexpt?' . 'ArsipSearch[no_surat]=' 
+                                                                             . '&ArsipSearch[divisi_id]=' 
+                                                                             . '&ArsipSearch[divisi_id]='
+                                                                             . '&ArsipSearch[tema_id]='
+                                                                             . '&ArsipSearch[jabatan_id]='
+                                                                             . '&ArsipSearch[penyimpanan_id]='
+                                                                             . '&ArsipSearch[jenis]='
+                                                                             . '&ArsipSearch[created_at]='
+                                                                             . '&ArsipSearch[modified_at]='
+                                                                             . '&ArsipSearch[receipt]='
+                                                                             . '&id=' . $project->perusahaan_id]) . '" >'.$project->nama_perusahaan.' &raquo;</a></p>';
 
 }
 echo '<br/>';

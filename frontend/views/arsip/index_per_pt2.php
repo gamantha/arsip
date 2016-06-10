@@ -15,7 +15,7 @@ use kartik\mpdf\Pdf;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Surat';
-$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="arsip-index">
 
