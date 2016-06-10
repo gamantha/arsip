@@ -74,6 +74,76 @@ class ArsipController extends Controller
 echo 'not valid URL';
     }
 
+    public function actionIndexpt2($id)
+    {
+    //ARIF BELAJAR NGODING  
+     //echo $id;
+    //echo $_GET['ArsipSearch[no_surat]'];
+    echo '<br>';
+    //print_r($_GET['no_surat']);
+    //print_r($_GET['ArsipSearch']);
+    echo $_GET['ArsipSearch']['no_surat'];
+    echo $_GET['ArsipSearch']['divisi_id'];
+    echo $_GET['ArsipSearch']['tema_id'];
+    echo $_GET['ArsipSearch']['jabatan_id'];
+    echo $_GET['ArsipSearch']['penyimpanan_id'];
+    echo $_GET['ArsipSearch']['jenis'];
+    echo $_GET['ArsipSearch']['created_at'];
+    echo $_GET['ArsipSearch']['modified_at'];
+    echo $_GET['ArsipSearch']['receipt'];
+    
+    $searchModel = new ArsipSearch();
+    $searchparams = Yii::$app->request->queryParams;
+    $searchparams["ArsipSearch"]["perusahaan_id"] = $id ;
+    echo '<br/><br/><br/><pre>';
+    $test = 'namaarif';
+    print_r($test);
+    
+    echo '<br>';
+    
+    if($_POST){
+        print_r($_POST);
+    }
+    echo '</pre>';
+
+    $this->view->params['addMenuItem'] = 		['label' => 'Surat',
+            'url' => ['#'],
+            'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
+            'items' => [
+                ['label' => 'Input Surat', 'url' =>['/arsip/create/' . $id]],
+                ['label' => 'Cari Surat', 'url' => ['/arsip/indexpt/' . $id]],
+                ['label' => 'Kelola Surat', 'url' => ['manage/index/' . $id]],
+
+            ],
+          ];
+
+    
+
+     $dataProvider = $searchModel->search($searchparams);
+
+
+      return $this->render('index_per_pt2', [
+          'searchModel' => $searchModel,
+          'dataProvider' => $dataProvider,
+      ]);
+
+    //ACTIVE QUERY PELAJARAN    
+    /*$arsips = Arsip::find()->andWhere(['no_surat'=>$_GET['ArsipSearch']['no_surat']])
+                           ->andWhere(['divisi_id'=>$_GET['ArsipSearch']['divisi_id']])
+                           ->andWhere(['perusahaan_id'=>$_GET['id']])->All();
+    
+    
+    //echo '<pre>';
+    //print_r($arsips);
+    foreach($arsips as $arsip){
+       echo '<pre>';
+        print_r($arsip->id);
+    }*/
+     
+      //ArsipSearch[no_surat]=1&ArsipSearch[divisi_id]=&ArsipSearch[tema_id]=&ArsipSearch[jabatan_id]=&ArsipSearch[penyimpanan_id]=&ArsipSearch[jenis]=&ArsipSearch[created_at]=&ArsipSearch[modified_at]=&ArsipSearch[receipt]=&id=1
+
+    }
+    
     public function actionIndexpt($id)
     {
 
@@ -81,6 +151,16 @@ echo 'not valid URL';
      $searchparams = Yii::$app->request->queryParams;
      $searchparams["ArsipSearch"]["perusahaan_id"] = $id ;
     echo '<br/><br/><br/><pre>';
+    $test = 'namaarif';
+    print_r($test);
+    //echo $_GET['ArsipSearch[no_surat]'];
+    echo '<br>';
+    //print_r($_GET['no_surat']);
+       
+        //ArsipSearch[no_surat]=1&ArsipSearch[divisi_id]=&ArsipSearch[tema_id]=&ArsipSearch[jabatan_id]=&ArsipSearch[penyimpanan_id]=&ArsipSearch[jenis]=&ArsipSearch[created_at]=&ArsipSearch[modified_at]=&ArsipSearch[receipt]=&
+
+        //id=1
+        //ArsipSearch[no_surat]=1
     
     if($_POST){
         print_r($_POST);

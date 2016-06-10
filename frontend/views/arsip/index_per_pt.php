@@ -22,8 +22,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+    
+    
     <p>
         <?= Html::a('Simpan Surat', ['arsip/create/' . $_GET['id']], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Export to PDF', ['arsip/indexpt2?' . 'ArsipSearch[no_surat]=' . $_GET['ArsipSearch']['no_surat'] . '&ArsipSearch[divisi_id]=' . $_GET['ArsipSearch']['divisi_id'] . '&id=' . $_GET['id']], ['class' => 'btn btn-danger']) ?>
     </p>
 
     <?= GridView::widget([
@@ -150,12 +153,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
     <p>
-    <?= Html::a('<i class="fa glyphicon glyphicon-print"></i> Export to PDF', ['arsip/mpdf-demo-1'], [
-        'class'=>'btn btn-danger', 
-        'target'=>'_blank', 
-        'data-toggle'=>'tooltip', 
-        'title'=>'Will open the generated PDF file in a new window'
-    ]); ?>
     </p>
 
 </div>
