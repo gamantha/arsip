@@ -9,7 +9,6 @@ use app\models\Tema;
 use app\models\Jabatan;
 use app\models\Upload;
 use app\models\Penyimpanan;
-use kartik\mpdf\Pdf;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ArsipSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -22,6 +21,13 @@ $this->title = 'Surat';
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     
+    
+    <?= Html::a('<i class="fa glyphicon glyphicon-print"></i> Print', ['/arsip/mpdf1'], [
+        'class'=>'btn btn-success', 
+        'target'=>'_blank', 
+        'data-toggle'=>'tooltip', 
+        'title'=>'Will open the generated PDF file in a new window'
+    ]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
