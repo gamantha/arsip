@@ -303,7 +303,7 @@ echo 'not valid URL';
         $dataProvider = $searchModel->search($searchparams);
         $pdf = new Pdf([
             'mode' => Pdf::MODE_CORE, // leaner size using standard fonts
-            'content' => $this->renderPartial('index_per_pt2', [
+            'content' => $this->render('index_per_pt2', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]),
