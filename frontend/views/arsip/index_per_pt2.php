@@ -22,7 +22,7 @@ $this->title = 'Surat';
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     
     
-    <?= Html::a('<i class="fa glyphicon glyphicon-print"></i> Print', ['/arsip/mpdf1'], [
+    <?= Html::a('<i class="fa glyphicon glyphicon-print"></i> Laporan', ['/arsip/mpdf1'], [
         'class'=>'btn btn-success', 
         'target'=>'_blank', 
         'data-toggle'=>'tooltip', 

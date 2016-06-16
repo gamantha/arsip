@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                           '&ArsipSearch[created_at]=' . $_GET['ArsipSearch']['created_at'] .                                                                       '&ArsipSearch[modified_at]=' . $_GET['ArsipSearch']['modified_at'] .                                                                     '&ArsipSearch[receipt]=' . $_GET['ArsipSearch']['receipt'] .
                                                           '&id=' . $_GET['id']], ['class' => 'btn btn-danger']) ?>
     </p>
+    
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
