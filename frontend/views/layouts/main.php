@@ -59,7 +59,6 @@ $this->params['addMenuItem'];
         'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
         'items' => [
             ['label' => 'Input Surat', 'url' =>['/arsip/create']],
-            ['label' => 'Cari Surat', 'url' => ['/arsip/index']],
             ['label' => 'Kelola Surat', 'url' => ['manage/index']],
 
         ],

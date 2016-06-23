@@ -7,7 +7,6 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Arsip */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Arsips', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="arsip-view">

@@ -72,7 +72,7 @@ use yii\helpers\Url;
         <?php
         
         if($model->isNewRecord){
-          echo 'jgn tampilkan';  
+            
         } else {
             $request = Yii::$app->request;
             $id = $request->get('id');

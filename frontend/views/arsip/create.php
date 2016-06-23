@@ -8,7 +8,6 @@ use yii\jui\DatePicker;
 /* @var $model app\models\Arsip */
 
 $this->title = 'Simpan Surat';
-$this->params['breadcrumbs'][] = ['label' => 'Surat', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="arsip-create">

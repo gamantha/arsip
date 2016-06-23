@@ -108,7 +108,6 @@ echo 'not valid URL';
             'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
             'items' => [
                 ['label' => 'Input Surat', 'url' =>['/arsip/create/' . $id]],
-                ['label' => 'Cari Surat', 'url' => ['/arsip/indexpt/' . $id]],
                 ['label' => 'Kelola Surat', 'url' => ['manage/index/' . $id]],
 
             ],
@@ -147,9 +146,7 @@ echo 'not valid URL';
      $searchModel = new ArsipSearch();
      $searchparams = Yii::$app->request->queryParams;
      $searchparams["ArsipSearch"]["perusahaan_id"] = $id ;
-    echo '<br/><br/><br/><pre>';
-    $test = 'namaarif';
-    print_r($test);
+    
     //echo $_GET['ArsipSearch[no_surat]'];
     echo '<br>';
     //print_r($_GET['no_surat']);
@@ -169,7 +166,6 @@ echo 'not valid URL';
             'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
             'items' => [
                 ['label' => 'Input Surat', 'url' =>['/arsip/create/' . $id]],
-                ['label' => 'Cari Surat', 'url' => ['/arsip/indexpt/' . $id]],
                 ['label' => 'Kelola Surat', 'url' => ['manage/index/' . $id]],
 
             ],
@@ -199,7 +195,6 @@ echo 'not valid URL';
              'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
              'items' => [
                  ['label' => 'Input Surat', 'url' =>['/arsip/create/' . $id]],
-                 ['label' => 'Cari Surat', 'url' => ['/arsip/indexpt/' . $id]],
                  ['label' => 'Manage', 'url' => ['manage/index/' . $id]],
 
              ],
@@ -209,6 +204,11 @@ echo 'not valid URL';
             'model' => $this->findModel($id),
         ]);
     }
+    
+    public function actionBalik($id)
+    {
+        return $this->redirect(Yii::$app->request->referrer);
+    }
 
     /**
      * Creates a new Arsip model.
@@ -217,14 +217,15 @@ echo 'not valid URL';
      */
     public function actionCreate($id)
     {
+        
+        
         $model = new Arsip();
 
         $this->view->params['addMenuItem'] = 		['label' => 'Surat',
                 'url' => ['#'],
                 'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
                 'items' => [
-                    ['label' => 'Input Surat', 'url' =>['/arsip/create/' . $id]],
-                    ['label' => 'Cari Surat', 'url' => ['/arsip/indexpt/' . $id]],
+                    ['label' => 'Input Surat', 'url' =>['/arsip/create/' . 'id=' . $_GET['id']]],
                     ['label' => 'Manage', 'url' => ['manage/index/' . $id]],
 
                 ],
@@ -265,7 +266,6 @@ echo 'not valid URL';
              'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
              'items' => [
                  ['label' => 'Input Surat', 'url' =>['/arsip/create/' . $id]],
-                 ['label' => 'Cari Surat', 'url' => ['/arsip/indexpt/' . $id]],
                  ['label' => 'Manage', 'url' => ['manage/index/' . $id]],
 
              ],
@@ -298,12 +298,22 @@ echo 'not valid URL';
     }
     
     public function actionMpdf1() {
-        $searchModel = new ArsipSearch();
-        $searchparams = Yii::$app->request->queryParams;
+        echo $_GET['ArsipSearch']['no_surat'];
+    echo $_GET['ArsipSearch']['divisi_id'];
+    echo $_GET['ArsipSearch']['tema_id'];
+    echo $_GET['ArsipSearch']['jabatan_id'];
+    echo $_GET['ArsipSearch']['penyimpanan_id'];
+    echo $_GET['ArsipSearch']['jenis'];
+    echo $_GET['ArsipSearch']['created_at'];
+    echo $_GET['ArsipSearch']['modified_at'];
+    echo $_GET['ArsipSearch']['receipt'];
+    
+    $searchModel = new ArsipSearch();
+    $searchparams = Yii::$app->request->queryParams;
         $dataProvider = $searchModel->search($searchparams);
         $pdf = new Pdf([
             'mode' => Pdf::MODE_CORE, // leaner size using standard fonts
-            'content' => $this->render('index_per_pt2', [
+            'content' => $this->renderPartial('index_per_pt2', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]),
