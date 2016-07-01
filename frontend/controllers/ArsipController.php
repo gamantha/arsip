@@ -64,12 +64,12 @@ class ArsipController extends Controller
         $searchModel = new ArsipSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-/*
+
          return $this->render('index', [
              'searchModel' => $searchModel,
              'dataProvider' => $dataProvider,
          ]);
-*/
+
 
 echo 'not valid URL';
     }
@@ -82,15 +82,7 @@ echo 'not valid URL';
     echo '<br>';
     //print_r($_GET['no_surat']);
     //print_r($_GET['ArsipSearch']);
-    echo $_GET['ArsipSearch']['no_surat'];
-    echo $_GET['ArsipSearch']['divisi_id'];
-    echo $_GET['ArsipSearch']['tema_id'];
-    echo $_GET['ArsipSearch']['jabatan_id'];
-    echo $_GET['ArsipSearch']['penyimpanan_id'];
-    echo $_GET['ArsipSearch']['jenis'];
-    echo $_GET['ArsipSearch']['created_at'];
-    echo $_GET['ArsipSearch']['modified_at'];
-    echo $_GET['ArsipSearch']['receipt'];
+    
     
     $searchModel = new ArsipSearch();
     $searchparams = Yii::$app->request->queryParams;
@@ -177,6 +169,49 @@ echo 'not valid URL';
 
 
       return $this->render('index_per_pt', [
+          'searchModel' => $searchModel,
+          'dataProvider' => $dataProvider,
+      ]);
+
+    }
+    
+    public function actionIndexpt3($id)
+    {
+
+     $searchModel = new ArsipSearch();
+     $searchparams = Yii::$app->request->queryParams;
+     $searchparams["ArsipSearch"]["perusahaan_id"] = $id ;
+    
+    //echo $_GET['ArsipSearch[no_surat]'];
+    echo '<br>';
+    //print_r($_GET['no_surat']);
+       
+        //ArsipSearch[no_surat]=1&ArsipSearch[divisi_id]=&ArsipSearch[tema_id]=&ArsipSearch[jabatan_id]=&ArsipSearch[penyimpanan_id]=&ArsipSearch[jenis]=&ArsipSearch[created_at]=&ArsipSearch[modified_at]=&ArsipSearch[receipt]=&
+
+        //id=1
+        //ArsipSearch[no_surat]=1
+    
+    if($_POST){
+        print_r($_POST);
+    }
+    echo '</pre>';
+
+    $this->view->params['addMenuItem'] = 		['label' => 'Surat',
+            'url' => ['#'],
+            'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
+            'items' => [
+                ['label' => 'Input Surat', 'url' =>['/arsip/create/' . $id]],
+                ['label' => 'Kelola Surat', 'url' => ['manage/index/' . $id]],
+
+            ],
+          ];
+
+    
+
+     $dataProvider = $searchModel->search($searchparams);
+
+
+      return $this->render('index_per_pt3', [
           'searchModel' => $searchModel,
           'dataProvider' => $dataProvider,
       ]);
@@ -275,6 +310,7 @@ echo 'not valid URL';
         $filemodel = new File();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->getSession()->setFlash('success', 'Data Berhasil Tersimpan');
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

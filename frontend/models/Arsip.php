@@ -95,7 +95,7 @@ class Arsip extends \yii\db\ActiveRecord
             'perusahaan_id' => 'Perusahaan',
             'divisi_id' => 'Divisi',
             'dikirim_ke' => 'Dikirim Ke',
-            'tema_id' => 'Tema',
+            'tema_id' => 'Perihal',
             'jabatan_id' => 'Jabatan',
             'penyimpanan_id' => 'Penyimpanan',
 			'jenis'=>'Jenis',

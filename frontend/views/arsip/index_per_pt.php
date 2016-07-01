@@ -10,6 +10,8 @@ use app\models\Jabatan;
 use app\models\Upload;
 use app\models\Penyimpanan;
 use kartik\mpdf\Pdf;
+use kartik\daterange\DateRangePicker;
+use kartik\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ArsipSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -106,12 +108,23 @@ $this->params['breadcrumbs'][] = $this->title;
                  ],
 
                  [
-    'attribute' => 'created_at',
-    'value' => 'created_at',
-    'label' => 'Dibuat pada',
-    'filter' => \yii\jui\DatePicker::widget(['model'=>$searchModel,'attribute'=>'created_at','language' => 'en', 'dateFormat' => 'yyyy-MM-dd']),
-    'format' => 'html',
-],
+                    'attribute' => 'created_at',
+                    'value' => 'created_at',
+                    'label' => 'Dibuat pada',
+                    'filter' => DateRangePicker::widget([
+                    'model'=>$searchModel,
+                    'attribute'=>'created_at',
+                    'convertFormat'=>true,
+                    'pluginOptions'=>[
+                        'timePicker'=>true,
+                        'timePickerIncrement'=>30,
+                        'locale'=>[
+                            'format'=>'Y-m-d h:i A'
+                        ]
+                    ]
+                ]),
+                    'format' => 'html',
+                ],
                 [
                 'attribute' => 'modified_at',
                 'value' => 'modified_at',

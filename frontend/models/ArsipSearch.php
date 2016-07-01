@@ -76,9 +76,6 @@ class ArsipSearch extends Arsip
 
         $query->andFilterWhere(['like', 'no_surat', $this->no_surat])
 ->andFilterWhere(['like', 'jenis', $this->jenis])
-//->andFilterWhere(['<', 'created_at', $this->created_at])
-//->andFilterWhere(['>', 'created_at', $this->created_at])
-//->andFilterWhere(['between', 'modified_at', $this->modified_at])
 ->andFilterWhere(['like', 'dikirim_ke', $this->dikirim_ke])
 ->andFilterWhere(['like', 'receipt', $this->receipt]);
 

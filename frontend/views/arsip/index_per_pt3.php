@@ -9,6 +9,7 @@ use app\models\Tema;
 use app\models\Jabatan;
 use app\models\Upload;
 use app\models\Penyimpanan;
+use kartik\mpdf\Pdf;
 use kartik\daterange\DateRangePicker;
 use kartik\widgets\ActiveForm;
 /* @var $this yii\web\View */
@@ -24,6 +25,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     
+    
+    <p>
+        <?= Html::a('Simpan Non Surat', ['arsip/create/' . $_GET['id']], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Export to PDF', ['arsip/indexpt2?' . 'ArsipSearch[no_surat]=' . $_GET['ArsipSearch']['no_surat'] .                                                                           '&ArsipSearch[divisi_id]=' . $_GET['ArsipSearch']['divisi_id'] .                                                                         '&ArsipSearch[tema_id]=' . $_GET['ArsipSearch']['tema_id'] .
+                                                          '&ArsipSearch[jabatan_id]=' . $_GET['ArsipSearch']['jabatan_id'] .                                                                       '&ArsipSearch[penyimpanan_id]=' . $_GET['ArsipSearch']['penyimpanan_id'] .                                                               '&ArsipSearch[jenis]=' . $_GET['ArsipSearch']['jenis'] .
+                                                          '&ArsipSearch[created_at]=' . $_GET['ArsipSearch']['created_at'] .                                                                       '&ArsipSearch[modified_at]=' . $_GET['ArsipSearch']['modified_at'] .                                                                     '&ArsipSearch[receipt]=' . $_GET['ArsipSearch']['receipt'] .
+                                                          '&id=' . $_GET['id']], ['class' => 'btn btn-danger']) ?>
+    </p>
+    
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -35,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'no_surat',
 
-
+/*
 			[
              'attribute' => 'perusahaan_id',
              'label'=>'Nama Perusahaan',
@@ -43,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
 'filter' => ArrayHelper::map(Perusahaan::find()->asArray()->All(), 'perusahaan_id', 'nama_perusahaan'),
              'value'=>'perusahaan.nama_perusahaan'
            ],
-
+*/
 			[
               'attribute' => 'divisi_id',
              'label'=>'Nama Divisi',
@@ -54,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 			[
               'attribute' => 'tema_id',
-             'label'=>'Nama Tema',
+             'label'=>'Perihal',
 			  //'filter'=>array('1'=>'PROD','2'=>'KU','3'=>'LG','4'=>'MRK','5'=>'PRC','6'=>'UM'),
      'filter' => ArrayHelper::map(Tema::find()->asArray()->All(), 'tema_id', 'tema'),
              'value'=>function($data) {return $data->tema->tema;},
@@ -74,7 +85,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			[
              'attribute' => 'penyimpanan_id',
              'label'=>'Penyimpanan',
-     'filter' => ArrayHelper::map(Penyimpanan::find()->asArray()->All(), 'penyimpanan_id', 'nama_penyimpanan'),
+     'filter' => ArrayHelper::map(Penyimpanan::find()->asArray()->All(), 'penyimpanan_id', 'tempat_penyimpanan'),
              'value'=>function($data) {return $data->penyimpanan->tempat_penyimpanan;},
            ],
 
@@ -88,8 +99,15 @@ $this->params['breadcrumbs'][] = $this->title;
 			  'filter'=>array('Masuk'=>'Masuk','Keluar'=>'Keluar'),
 
            ],
-           'dikirim_ke',
-            [
+           [
+                    'attribute' => 'dikirim_ke',
+                   'label'=>'Dikirim ke',
+      			  //'filter'=>array('Masuk'=>'Masuk','Keluar'=>'Keluar'),
+           'filter' =>'',
+
+                 ],
+
+                 [
                     'attribute' => 'created_at',
                     'value' => 'created_at',
                     'label' => 'Dibuat pada',
@@ -107,7 +125,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]),
                     'format' => 'html',
                 ],
-            [
+                [
+                'attribute' => 'modified_at',
+                'value' => 'modified_at',
+                'label' => 'Diubah pada',
+                ],
+                 //'receipt',
+
+                 [
                          'attribute' => 'receipt',
                          'label'=>'Tanda terima',
                          'format'=>'raw',
@@ -137,33 +162,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
             'class' => 'yii\grid\ActionColumn',
-          //  'contentOptions' => ['style' => 'width:260px;'],
             'header'=>'Action',
-            'template' => '{view} {update} {delete} {upload} {download}',
-            'buttons' => [
-                'download' => function ($url, $model) {
-
-                 $arsipModel = Upload::find()
-                 ->andWhere(['arsip_id'=>$model->id])
-                 ->orderBy('last_update DESC')
-                 ->One();
-                if (isset($arsipModel)) {
-return (Html::a('<span class="fa fa-search"></span>download', '?r=upload/downloadsurat&id='.$model->id));
-} else {
- '';
-}
-                },
-                'upload' => function ($url, $model) {
-
-return (Html::a('<span class="fa fa-search"></span>upload', '?r=upload/upload&id='.$model->id));
-                },
-
-
-            ],
+            'template' => '{view} {update}',
            ],
 
 
         ],
     ]); ?>
+    <p>
+    </p>
 
 </div>

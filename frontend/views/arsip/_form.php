@@ -46,7 +46,7 @@ use yii\helpers\Url;
 
     <?php $dataList=ArrayHelper::map(Tema::find()->asArray()->all(), 'tema_id', 'tema');?>
 	 <?=$form->field($model, 'tema_id')->dropDownList($dataList,
-         ['prompt'=>'-Pilih Tema-']) ?>
+         ['prompt'=>'-Pilih Perihal-']) ?>
 
    <?php $dataList=ArrayHelper::map(Jabatan::find()->asArray()->all(), 'jabatan_id', 'nama_jabatan');?>
 	 <?=$form->field($model, 'jabatan_id')->dropDownList($dataList,
