@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Arsip;
+use app\models\Nonsurat;
 
 /**
- * ArsipSearch represents the model behind the search form about `app\models\Arsip`.
+ * NonsuratSearch represents the model behind the search form about `app\models\Nonsurat`.
  */
-class ArsipSearch extends Arsip
+class NonsuratSearch extends Nonsurat
 {
     /**
      * @inheritdoc
@@ -18,10 +18,8 @@ class ArsipSearch extends Arsip
     public function rules()
     {
         return [
-           // [['id','divisi_id',  'jabatan_id','penyimpanan_id'], 'integer'],
-           // [['no_surat', 'tanggal_simpan','tema', 'perusahaan_id','jenis'], 'safe'],
-           [['id', 'perusahaan_id', 'divisi_id', 'jabatan_id', 'tema_id','penyimpanan_id'], 'integer'],
-           [['no_surat', 'tanggal_simpan', 'jenis', 'dikirim_ke', 'created_at', 'modified_at', 'receipt'], 'safe'],
+            [['id', 'perusahaan_id', 'divisi_id', 'tema_id', 'penyimpanan_id'], 'integer'],
+            [['no_surat', 'tanggal_simpan', 'status', 'created_at', 'modified_at'], 'safe'],
         ];
     }
 
@@ -43,8 +41,9 @@ class ArsipSearch extends Arsip
      */
     public function search($params)
     {
-        $query = Arsip::find();
+        $query = Nonsurat::find();
 
+        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -58,28 +57,20 @@ class ArsipSearch extends Arsip
             return $dataProvider;
         }
 
+        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'tanggal_simpan' => $this->tanggal_simpan,
             'perusahaan_id' => $this->perusahaan_id,
             'divisi_id' => $this->divisi_id,
-            'dikirim_ke' => $this->dikirim_ke,
             'tema_id' => $this->tema_id,
-            'jabatan_id' => $this->jabatan_id,
             'penyimpanan_id' => $this->penyimpanan_id,
-			'jenis' => $this->jenis,
             'created_at' => $this->created_at,
             'modified_at' => $this->modified_at,
         ]);
-        
-        
 
         $query->andFilterWhere(['like', 'no_surat', $this->no_surat])
-->andFilterWhere(['like', 'jenis', $this->jenis])
-->andFilterWhere(['like', 'dikirim_ke', $this->dikirim_ke])
-->andFilterWhere(['like', 'receipt', $this->receipt]);
-
-
+            ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;
     }

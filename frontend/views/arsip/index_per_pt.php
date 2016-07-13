@@ -112,17 +112,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     'value' => 'created_at',
                     'label' => 'Dibuat pada',
                     'filter' => DateRangePicker::widget([
-                    'model'=>$searchModel,
-                    'attribute'=>'created_at',
-                    'convertFormat'=>true,
-                    'pluginOptions'=>[
-                        'timePicker'=>true,
-                        'timePickerIncrement'=>30,
-                        'locale'=>[
-                            'format'=>'Y-m-d h:i A'
+                        'model'=>$searchModel,
+                        'attribute'=>'created_at',
+                        'convertFormat'=>true,
+                        'pluginOptions'=>[
+                            'timePicker'=>true,
+                            'timePickerIncrement'=>30,
+                            'locale'=>[
+                                'format'=>'Y-m-d h:i A'
+                            ]
                         ]
-                    ]
-                ]),
+                    ]),
                     'format' => 'html',
                 ],
                 [

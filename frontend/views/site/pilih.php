@@ -29,16 +29,13 @@ $projects = Perusahaan::find()->One();
                                                                              . '&ArsipSearch[receipt]='
                                                                              . '&id=' . $projects->perusahaan_id]) . '" >SURAT</a></p>';
 
-echo '<p><a class="btn btn-info" href="'. Url::toRoute(['arsip/indexpt3?' . 'ArsipSearch[no_surat]=' 
-                                                                             . '&ArsipSearch[divisi_id]=' 
-                                                                             . '&ArsipSearch[divisi_id]='
-                                                                             . '&ArsipSearch[tema_id]='
-                                                                             . '&ArsipSearch[jabatan_id]='
-                                                                             . '&ArsipSearch[penyimpanan_id]='
-                                                                             . '&ArsipSearch[jenis]='
-                                                                             . '&ArsipSearch[created_at]='
-                                                                             . '&ArsipSearch[modified_at]='
-                                                                             . '&ArsipSearch[receipt]='
+echo '<p><a class="btn btn-info" href="'. Url::toRoute(['nonsurat/indexpt3?' . 'NonsuratSearch[no_surat]=' 
+                                                                             . '&NonsuratSearch[divisi_id]='
+                                                                             . '&NonsuratSearch[tema_id]='
+                                                                             . '&NonsuratSearch[penyimpanan_id]='
+                                                                             . '&NonsuratSearch[status]='
+                                                                             . '&NonsuratSearch[created_at]='
+                                                                             . '&NonsuratSearch[modified_at]='
                                                                              . '&id=' . $projects->perusahaan_id]) . '" >Non SURAT</a></p>';
 
 

@@ -3,78 +3,53 @@
 namespace frontend\controllers;
 
 use Yii;
-use app\models\Arsip;
-use app\models\ArsipSearch;
+use app\models\Nonsurat;
+use app\models\UploadForm;
+use app\models\NonsuratSearch;
 use app\models\File;
-use app\models\FileSearch;
+use yii\web\UploadedFile;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\jui\Menu;
-use yii\base\InvalidParamException;
-use yii\web\BadRequestHttpException;
-use yii\filters\AccessControl;
 use yii\db\Expression;
-use app\models\UploadForm;
-use yii\web\UploadedFile;
 use kartik\mpdf\Pdf;
 
 /**
- * ArsipController implements the CRUD actions for Arsip model.
+ * NonsuratController implements the CRUD actions for Nonsurat model.
  */
-class ArsipController extends Controller
+class NonsuratController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
-         'access' => [
-             'class' => AccessControl::className(),
-             'only' => ['logout', 'signup','indexpt'],
-             'rules' => [
-                 /*[
-                     'actions' => ['signup'],
-                     'allow' => true,
-                     'roles' => ['?'],
-                 ],
-                 */
-                 [
-                     'actions' => ['indexpt'],
-                     'allow' => true,
-                     'roles' => ['@'],
-                 ],
-             ],
-         ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['post'],
+                    'delete' => ['POST'],
                 ],
             ],
         ];
     }
 
-
-
     /**
-     * Lists all Arsip models.
+     * Lists all Nonsurat models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ArsipSearch();
+        $searchModel = new NonsuratSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-
-         return $this->render('index', [
-             'searchModel' => $searchModel,
-             'dataProvider' => $dataProvider,
-         ]);
-
-
-echo 'not valid URL';
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
-
-    public function actionIndexpt2($id)
+    
+    public function actionIndexpt4($id)
     {
     //ARIF BELAJAR NGODING  
      //echo $id;
@@ -84,9 +59,9 @@ echo 'not valid URL';
     //print_r($_GET['ArsipSearch']);
     
     
-    $searchModel = new ArsipSearch();
+    $searchModel = new NonsuratSearch();
     $searchparams = Yii::$app->request->queryParams;
-    $searchparams["ArsipSearch"]["perusahaan_id"] = $id ;
+    $searchparams["NonsuratSearch"]["perusahaan_id"] = $id ;
     
     echo '<br>';
     
@@ -110,7 +85,7 @@ echo 'not valid URL';
      $dataProvider = $searchModel->search($searchparams);
 
 
-      return $this->render('index_per_pt2', [
+      return $this->render('index_per_pt4', [
           'searchModel' => $searchModel,
           'dataProvider' => $dataProvider,
       ]);
@@ -132,55 +107,12 @@ echo 'not valid URL';
 
     }
     
-    public function actionIndexpt($id)
-    {
-
-     $searchModel = new ArsipSearch();
-     $searchparams = Yii::$app->request->queryParams;
-     $searchparams["ArsipSearch"]["perusahaan_id"] = $id ;
-    
-    //echo $_GET['ArsipSearch[no_surat]'];
-    echo '<br>';
-    //print_r($_GET['no_surat']);
-       
-        //ArsipSearch[no_surat]=1&ArsipSearch[divisi_id]=&ArsipSearch[tema_id]=&ArsipSearch[jabatan_id]=&ArsipSearch[penyimpanan_id]=&ArsipSearch[jenis]=&ArsipSearch[created_at]=&ArsipSearch[modified_at]=&ArsipSearch[receipt]=&
-
-        //id=1
-        //ArsipSearch[no_surat]=1
-    
-    if($_POST){
-        print_r($_POST);
-    }
-    echo '</pre>';
-
-    $this->view->params['addMenuItem'] = 		['label' => 'Surat',
-            'url' => ['#'],
-            'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
-            'items' => [
-                ['label' => 'Input Surat', 'url' =>['/arsip/create/' . $id]],
-                ['label' => 'Kelola Surat', 'url' => ['manage/index/' . $id]],
-
-            ],
-          ];
-
-    
-
-     $dataProvider = $searchModel->search($searchparams);
-
-
-      return $this->render('index_per_pt', [
-          'searchModel' => $searchModel,
-          'dataProvider' => $dataProvider,
-      ]);
-
-    }
-    
     public function actionIndexpt3($id)
     {
 
-     $searchModel = new ArsipSearch();
+     $searchModel = new NonsuratSearch();
      $searchparams = Yii::$app->request->queryParams;
-     $searchparams["ArsipSearch"]["perusahaan_id"] = $id ;
+     $searchparams["NonsuratSearch"]["perusahaan_id"] = $id ;
     
     //echo $_GET['ArsipSearch[no_surat]'];
     echo '<br>';
@@ -200,7 +132,7 @@ echo 'not valid URL';
             'url' => ['#'],
             'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
             'items' => [
-                ['label' => 'Input Surat', 'url' =>['/arsip/create/' . $id]],
+                ['label' => 'Input Non-Surat', 'url' =>['/nonsurat/create/' . $id]],
                 ['label' => 'Kelola Surat', 'url' => ['manage/index/' . $id]],
 
             ],
@@ -219,34 +151,19 @@ echo 'not valid URL';
     }
 
     /**
-     * Displays a single Arsip model.
+     * Displays a single Nonsurat model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
-     $this->view->params['addMenuItem'] = 		['label' => 'Surat',
-             'url' => ['#'],
-             'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
-             'items' => [
-                 ['label' => 'Input Surat', 'url' =>['/arsip/create/' . $id]],
-                 ['label' => 'Manage', 'url' => ['manage/index/' . $id]],
-
-             ],
-           ];
-
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
-    
-    public function actionBalik($id)
-    {
-        return $this->redirect(Yii::$app->request->referrer);
-    }
 
     /**
-     * Creates a new Arsip model.
+     * Creates a new Nonsurat model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
@@ -254,13 +171,13 @@ echo 'not valid URL';
     {
         
         
-        $model = new Arsip();
+        $model = new Nonsurat();
 
         $this->view->params['addMenuItem'] = 		['label' => 'Surat',
                 'url' => ['#'],
                 'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
                 'items' => [
-                    ['label' => 'Input Surat', 'url' =>['/arsip/create/' . 'id=' . $_GET['id']]],
+                    ['label' => 'Input Surat', 'url' =>['/nonsurat/create/' . 'id=' . $_GET['id']]],
                     ['label' => 'Manage', 'url' => ['manage/index/' . $id]],
 
                 ],
@@ -275,10 +192,10 @@ echo 'not valid URL';
            echo 'berhasil';
                       return $this->redirect(['view', 'id' => $model->id]);
          } else {
-          Yii::$app->getSession()->setFlash('error', 'No Surat Sudah Ada');
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+          echo '<pre>Gagal : <br/>';
+          print_r($model->getErrors());
+          print_r($_POST);
+          echo '</pre>';
 
         }
         } else {
@@ -289,18 +206,18 @@ echo 'not valid URL';
     }
 
     /**
-     * Updates an existing Arsip model.
+     * Updates an existing Nonsurat model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id)
     {
-     $this->view->params['addMenuItem'] = 		['label' => 'Surat',
+     $this->view->params['addMenuItem'] = 		['label' => 'Non Surat',
              'url' => ['#'],
              'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
              'items' => [
-                 ['label' => 'Input Surat', 'url' =>['/arsip/create/' . $id]],
+                 ['label' => 'Input Surat', 'url' =>['/nonsurat/create/' . $id]],
                  ['label' => 'Manage', 'url' => ['manage/index/' . $id]],
 
              ],
@@ -321,7 +238,7 @@ echo 'not valid URL';
     }
 
     /**
-     * Deletes an existing Arsip model.
+     * Deletes an existing Nonsurat model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -334,22 +251,20 @@ echo 'not valid URL';
     }
     
     public function actionMpdf1() {
-        echo $_GET['ArsipSearch']['no_surat'];
-    echo $_GET['ArsipSearch']['divisi_id'];
-    echo $_GET['ArsipSearch']['tema_id'];
-    echo $_GET['ArsipSearch']['jabatan_id'];
-    echo $_GET['ArsipSearch']['penyimpanan_id'];
-    echo $_GET['ArsipSearch']['jenis'];
-    echo $_GET['ArsipSearch']['created_at'];
-    echo $_GET['ArsipSearch']['modified_at'];
-    echo $_GET['ArsipSearch']['receipt'];
+        echo $_GET['NonsuratSearch']['no_surat'];
+    echo $_GET['NonsuratSearch']['divisi_id'];
+    echo $_GET['NonsuratSearch']['tema_id'];
+    echo $_GET['NonsuratSearch']['penyimpanan_id'];
+    echo $_GET['NonsuratSearch']['status'];
+    echo $_GET['NonsuratSearch']['created_at'];
+    echo $_GET['NonsuratSearch']['modified_at'];
     
-    $searchModel = new ArsipSearch();
+    $searchModel = new NonsuratSearch();
     $searchparams = Yii::$app->request->queryParams;
         $dataProvider = $searchModel->search($searchparams);
         $pdf = new Pdf([
             'mode' => Pdf::MODE_CORE, // leaner size using standard fonts
-            'content' => $this->renderPartial('index_per_pt2', [
+            'content' => $this->renderPartial('index_per_pt4', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]),
@@ -364,23 +279,6 @@ echo 'not valid URL';
             ]
         ]);
         return $pdf->render();
-    }
-    
-    
-    /**
-     * Finds the Arsip model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Arsip the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Arsip::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
     }
     
     public function actionUpload($id)
@@ -399,12 +297,27 @@ echo 'not valid URL';
                     $model->file_location = $model->id . '_' . $uploadmodel->docFile->baseName . '.' . $uploadmodel->docFile->extension;
                     $model->save();
                     Yii::$app->getSession()->setFlash('success', 'Data Berhasil Tersimpan');
-                    return $this->redirect(['arsip/update/'. $model->arsip_id]);
+                    return $this->redirect(['nonsurat/update/'. $model->arsip_id]);
 
             
         } //isPost
 
         return $this->render('upload', ['uploadmodel' => $uploadmodel]);
     }
-    
+
+    /**
+     * Finds the Nonsurat model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Nonsurat the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Nonsurat::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
 }
