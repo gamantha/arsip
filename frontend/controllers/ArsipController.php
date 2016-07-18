@@ -7,6 +7,8 @@ use app\models\Arsip;
 use app\models\ArsipSearch;
 use app\models\File;
 use app\models\FileSearch;
+use app\models\Divisi;
+use app\models\Tema;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -15,6 +17,7 @@ use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\filters\AccessControl;
 use yii\db\Expression;
+use yii\helpers\ArrayHelper;
 use app\models\UploadForm;
 use yii\web\UploadedFile;
 use kartik\mpdf\Pdf;
@@ -273,6 +276,10 @@ echo 'not valid URL';
                  $year = new Expression('NOW()');
                  $yyyy = substr($year,0,4);
                  $model->year = intval($model->tanggal_simpan);
+                 ArrayHelper::map(Divisi::find()->asArray()->All(), 'divisi_id', 'nama_divisi');
+                 ArrayHelper::map(Tema::find()->asArray()->All(), 'tema_id', 'tema');
+                 $model->detail = $model->no_surat . '/' . $model->divisi->nama_divisi . '/' . $model->tema->tema . '/' . intval($model->tanggal_simpan);
+                 //Nosurat/napa dept/ditujukan ke/perihal/yg menandtangani/bulan romawi/tahun
          if ($model->save())
          {
             echo 'berhasil';

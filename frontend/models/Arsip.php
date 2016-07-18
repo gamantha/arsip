@@ -21,6 +21,7 @@ use Yii;
  * @property string $modified_at
  * @property string $receipt
  * @property integer $year
+ * @property string $detail
  *
  * @property Penyimpanan $penyimpanan
  * @property Divisi $divisi
@@ -44,11 +45,11 @@ class Arsip extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['no_surat', 'tanggal_simpan', 'perusahaan_id', 'divisi_id', 'tema_id', 'jabatan_id', 'penyimpanan_id', 'jenis', 'year'], 'required'],
+            [['no_surat', 'tanggal_simpan', 'perusahaan_id', 'divisi_id', 'tema_id', 'jabatan_id', 'penyimpanan_id', 'jenis', 'year', 'detail'], 'required'],
             [['tanggal_simpan', 'created_at', 'modified_at'], 'safe'],
             [['perusahaan_id', 'divisi_id', 'tema_id', 'jabatan_id', 'penyimpanan_id', 'year'], 'integer'],
             [['jenis', 'receipt'], 'string'],
-            [['no_surat', 'dikirim_ke'], 'string', 'max' => 255],
+            [['no_surat', 'dikirim_ke', 'detail'], 'string', 'max' => 255],
             [['no_surat', 'year'], 'unique', 'targetAttribute' => ['no_surat', 'year'], 'message' => 'The combination of No Surat and Year has already been taken.'],
             [['penyimpanan_id'], 'exist', 'skipOnError' => true, 'targetClass' => Penyimpanan::className(), 'targetAttribute' => ['penyimpanan_id' => 'penyimpanan_id']],
             [['divisi_id'], 'exist', 'skipOnError' => true, 'targetClass' => Divisi::className(), 'targetAttribute' => ['divisi_id' => 'divisi_id']],
@@ -78,6 +79,7 @@ class Arsip extends \yii\db\ActiveRecord
             'modified_at' => Yii::t('app', 'Modified At'),
             'receipt' => Yii::t('app', 'Receipt'),
             'year' => Yii::t('app', 'Year'),
+            'detail' => Yii::t('app', 'Detail'),
         ];
     }
 
