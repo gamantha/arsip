@@ -97,11 +97,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute'=>'created_at',
                     'convertFormat'=>true,
                     'pluginOptions'=>[
-                        'timePicker'=>true,
-                        'timePickerIncrement'=>30,
-                        'locale'=>[
-                            'format'=>'Y-m-d h:i A'
-                        ]
+                           //'timePicker'=>true,
+                           //'timePickerIncrement'=>30,
+                           'locale'=>[
+                               'format'=>'Y-m-d'
+                           ]
                     ]
                 ]),
                     'format' => 'html',

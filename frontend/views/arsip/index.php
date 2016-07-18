@@ -139,7 +139,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'class' => 'yii\grid\ActionColumn',
           //  'contentOptions' => ['style' => 'width:260px;'],
             'header'=>'Action',
-            'template' => '{view} {update} {delete} {upload} {download}',
+            'template' => '{view} {update} {delete}',
             'buttons' => [
                 'download' => function ($url, $model) {
 

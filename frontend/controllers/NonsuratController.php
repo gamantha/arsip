@@ -74,7 +74,7 @@ class NonsuratController extends Controller
             'url' => ['#'],
             'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
             'items' => [
-                ['label' => 'Input Surat', 'url' =>['/arsip/create/' . $id]],
+                ['label' => 'Input Non - Surat', 'url' =>['/nonsurat/create/' . $id]],
                 ['label' => 'Kelola Surat', 'url' => ['manage/index/' . $id]],
 
             ],
@@ -132,7 +132,7 @@ class NonsuratController extends Controller
             'url' => ['#'],
             'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
             'items' => [
-                ['label' => 'Input Non-Surat', 'url' =>['/nonsurat/create/' . $id]],
+                ['label' => 'Input Non - Surat', 'url' =>['/nonsurat/create/' . $id]],
                 ['label' => 'Kelola Surat', 'url' => ['manage/index/' . $id]],
 
             ],
@@ -217,7 +217,7 @@ class NonsuratController extends Controller
              'url' => ['#'],
              'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
              'items' => [
-                 ['label' => 'Input Surat', 'url' =>['/nonsurat/create/' . $id]],
+                 ['label' => 'Input Non - Surat', 'url' =>['/nonsurat/create/' . $id]],
                  ['label' => 'Manage', 'url' => ['manage/index/' . $id]],
 
              ],

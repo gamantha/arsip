@@ -65,11 +65,12 @@ class NonsuratSearch extends Nonsurat
             'divisi_id' => $this->divisi_id,
             'tema_id' => $this->tema_id,
             'penyimpanan_id' => $this->penyimpanan_id,
-            'created_at' => $this->created_at,
+            //'created_at' => $this->created_at,
             'modified_at' => $this->modified_at,
         ]);
 
         $query->andFilterWhere(['like', 'no_surat', $this->no_surat])
+            ->andFilterWhere(['between', 'created_at', $this->created_at, (isset(explode(' ',$this->created_at)[2]) ? explode(' ',$this->created_at)[2] : $this->created_at)])
             ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;

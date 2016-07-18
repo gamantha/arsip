@@ -269,14 +269,16 @@ echo 'not valid URL';
         //$model->perusahaan_id = $id;
         if ($model->load(Yii::$app->request->post())) {
                  $model->perusahaan_id = $id;
-                  $model->created_at = new Expression('NOW()');
+                 $model->created_at = new Expression('NOW()');
+                 $year = new Expression('NOW()');
+                 $yyyy = substr($year,0,4);
+                 $model->year = intval($model->tanggal_simpan);
          if ($model->save())
          {
-           echo 'berhasil';
-                      return $this->redirect(['view', 'id' => $model->id]);
+            echo 'berhasil';
+            return $this->redirect(['view', 'id' => $model->id]);
          } else {
-          Yii::$app->getSession()->setFlash('error', 'No Surat Sudah Ada');
-            return $this->render('create', [
+          return $this->render('create', [
                 'model' => $model,
             ]);
 

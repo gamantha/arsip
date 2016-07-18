@@ -32,7 +32,7 @@ foreach($projects as $project){
 
         
 ?>
-<a class="btn btn-lg btn-success" href="<?php echo Url::toRoute(['arsip/index']); ?>" width="100">ALL PERUSAHAAN</a>
+<a class="btn btn-lg btn-success" href="<?php echo Url::toRoute(['site/pilih2?' . '&id=' . $project->perusahaan_id]); ?>" width="100">ALL PERUSAHAAN</a>
 <?php    
     echo '<br/>';
  //echo '<p><a class="btn btn-success" href="'. Url::toRoute(['sigproject/create']) . '" >Tambah PT &raquo;</a></p>';

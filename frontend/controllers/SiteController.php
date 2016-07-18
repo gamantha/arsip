@@ -79,6 +79,11 @@ class SiteController extends Controller
     {
         return $this->render('pilih');
     }
+    
+    public function actionPilih2()
+    {
+        return $this->render('pilih2');
+    }
 
     /**
      * Logs in a user.

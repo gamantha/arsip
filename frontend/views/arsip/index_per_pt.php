@@ -99,13 +99,8 @@ $this->params['breadcrumbs'][] = $this->title;
 			  'filter'=>array('Masuk'=>'Masuk','Keluar'=>'Keluar'),
 
            ],
-           [
-                    'attribute' => 'dikirim_ke',
-                   'label'=>'Dikirim ke',
-      			  //'filter'=>array('Masuk'=>'Masuk','Keluar'=>'Keluar'),
-           'filter' =>'',
-
-                 ],
+            
+            'dikirim_ke',
 
                  [
                     'attribute' => 'created_at',
@@ -114,14 +109,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filter' => DateRangePicker::widget([
                         'model'=>$searchModel,
                         'attribute'=>'created_at',
-                        'convertFormat'=>true,
+                        'convertFormat'=>true,           
                         'pluginOptions'=>[
-                            'timePicker'=>true,
-                            'timePickerIncrement'=>30,
-                            'locale'=>[
-                                'format'=>'Y-m-d h:i A'
-                            ]
-                        ]
+                           //'timePicker'=>true,
+                           //'timePickerIncrement'=>30,
+                           'locale'=>[
+                               'format'=>'Y-m-d'
+                           ]
+                       ]
                     ]),
                     'format' => 'html',
                 ],
@@ -130,6 +125,25 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'modified_at',
                 'label' => 'Diubah pada',
                 ],
+            [
+                    'attribute' => 'tanggal_simpan',
+                    'value' => 'tanggal_simpan',
+                    'label' => 'Dibuat pada',
+                    'filter' => DateRangePicker::widget([
+                        'model'=>$searchModel,
+                        'attribute'=>'tanggal_simpan',
+                        'convertFormat'=>true,           
+                        'pluginOptions'=>[
+                           //'timePicker'=>true,
+                           //'timePickerIncrement'=>30,
+                           'locale'=>[
+                               'format'=>'Y-m-d'
+                           ]
+                       ]
+                    ]),
+                    'format' => 'html',
+                ],
+            'year',
                  //'receipt',
 
                  [
@@ -149,6 +163,9 @@ $this->params['breadcrumbs'][] = $this->title;
                               $color = 'red';
                              } else if ($data->receipt == 'required - received') {
                               $color = 'green';
+                             }
+                             else if ($data->receipt == 'not required') {
+                              $color = 'yellow';
                              }
                            return '<span style="background-color:'.$color.';"> '.$data->receipt.'</span>';
                            //   return Html::tag('span', $data->receipt, ['style'=>'background-color:' . (isset($values[$data->receipt]) ? $values[$data->receipt] : 'red')]);

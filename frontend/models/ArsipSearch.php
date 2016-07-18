@@ -59,23 +59,24 @@ class ArsipSearch extends Arsip
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'tanggal_simpan' => $this->tanggal_simpan,
-            'perusahaan_id' => $this->perusahaan_id,
-            'divisi_id' => $this->divisi_id,
-            'dikirim_ke' => $this->dikirim_ke,
-            'tema_id' => $this->tema_id,
-            'jabatan_id' => $this->jabatan_id,
-            'penyimpanan_id' => $this->penyimpanan_id,
-			'jenis' => $this->jenis,
-            'created_at' => $this->created_at,
-            'modified_at' => $this->modified_at,
-        ]);
-        
+           'id' => $this->id,
+           //'tanggal_simpan' => $this->tanggal_simpan,
+           'perusahaan_id' => $this->perusahaan_id,
+           'divisi_id' => $this->divisi_id,
+           'dikirim_ke' => $this->dikirim_ke,
+           'tema_id' => $this->tema_id,
+           'jabatan_id' => $this->jabatan_id,
+           'penyimpanan_id' => $this->penyimpanan_id,
+            'jenis' => $this->jenis,
+           //'created_at' => $this->created_at,
+           'modified_at' => $this->modified_at,
+       ]);
         
 
         $query->andFilterWhere(['like', 'no_surat', $this->no_surat])
 ->andFilterWhere(['like', 'jenis', $this->jenis])
+->andFilterWhere(['between', 'created_at', $this->created_at, (isset(explode(' ',$this->created_at)[2]) ? explode(' ',$this->created_at)[2] : $this->created_at)])
+->andFilterWhere(['between', 'tanggal_simpan', $this->tanggal_simpan, (isset(explode(' ',$this->tanggal_simpan)[2]) ? explode(' ',$this->tanggal_simpan)[2] : $this->tanggal_simpan)])
 ->andFilterWhere(['like', 'dikirim_ke', $this->dikirim_ke])
 ->andFilterWhere(['like', 'receipt', $this->receipt]);
 

@@ -39,6 +39,7 @@ class Nonsurat extends \yii\db\ActiveRecord
             [['perusahaan_id', 'divisi_id', 'tema_id', 'penyimpanan_id'], 'integer'],
             [['status'], 'string'],
             [['no_surat'], 'string', 'max' => 255],
+            [['no_surat'], 'unique'],
         ];
     }
 
@@ -49,7 +50,7 @@ class Nonsurat extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'no_surat' => Yii::t('app', 'No Surat'),
+            'no_surat' => Yii::t('app', 'No Arsip'),
             'tanggal_simpan' => Yii::t('app', 'Tanggal Simpan'),
             'perusahaan_id' => Yii::t('app', 'Perusahaan ID'),
             'divisi_id' => Yii::t('app', 'Divisi ID'),
@@ -97,7 +98,6 @@ class Nonsurat extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Tema::className(), ['tema_id' => 'tema_id']);
     }
-
 
     /**
      * @inheritdoc
