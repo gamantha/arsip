@@ -15,7 +15,7 @@ $this->title = 'My Yii Application';
         <?php
 //echo sizeof($projects);
 
-$projects = Perusahaan::find()->One();
+$project = Perusahaan::find()->One();
 
  echo '<p><a class="btn btn-success" href="'. Url::toRoute(['arsip/indexpt?' . 'ArsipSearch[no_surat]=' 
                                                                              . '&ArsipSearch[divisi_id]=' 
@@ -27,7 +27,7 @@ $projects = Perusahaan::find()->One();
                                                                              . '&ArsipSearch[created_at]='
                                                                              . '&ArsipSearch[modified_at]='
                                                                              . '&ArsipSearch[receipt]='
-                                                                             . '&id=' . $projects->perusahaan_id]) . '" >SURAT</a></p>';
+                                                                             . '&id=' . $_GET['id']]) . '" >SURAT</a></p>';
 
 echo '<p><a class="btn btn-info" href="'. Url::toRoute(['nonsurat/indexpt3?' . 'NonsuratSearch[no_surat]=' 
                                                                              . '&NonsuratSearch[divisi_id]='
@@ -36,7 +36,7 @@ echo '<p><a class="btn btn-info" href="'. Url::toRoute(['nonsurat/indexpt3?' . '
                                                                              . '&NonsuratSearch[status]='
                                                                              . '&NonsuratSearch[created_at]='
                                                                              . '&NonsuratSearch[modified_at]='
-                                                                             . '&id=' . $projects->perusahaan_id]) . '" >Non SURAT</a></p>';
+                                                                             . '&id=' . $_GET['id']]) . '" >Non SURAT</a></p>';
 
 
         

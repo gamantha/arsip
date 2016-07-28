@@ -143,8 +143,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]),
                     'format' => 'html',
                 ],
-            'year',
-            'detail',
                  //'receipt',
 
                  [
