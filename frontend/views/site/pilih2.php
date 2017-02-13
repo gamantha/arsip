@@ -17,7 +17,7 @@ $this->title = 'My Yii Application';
 
 $projects = Perusahaan::find()->One();
 
- echo '<p><a class="btn btn-success" href="'. Url::toRoute(['arsip/index']) . '" >SURATa</a></p>';
+ echo '<p><a class="btn btn-success" href="'. Url::toRoute(['arsip/index']) . '" >SURAT</a></p>';
 
 echo '<p><a class="btn btn-info" href="'. Url::toRoute(['nonsurat/index']) . '" >Non SURAT</a></p>';
 

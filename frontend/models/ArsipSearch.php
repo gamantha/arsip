@@ -20,8 +20,8 @@ class ArsipSearch extends Arsip
         return [
            // [['id','divisi_id',  'jabatan_id','penyimpanan_id'], 'integer'],
            // [['no_surat', 'tanggal_simpan','tema', 'perusahaan_id','jenis'], 'safe'],
-           [['id', 'perusahaan_id', 'divisi_id', 'jabatan_id', 'tema_id','penyimpanan_id'], 'integer'],
-           [['no_surat', 'tanggal_simpan', 'jenis', 'dikirim_ke', 'created_at', 'modified_at', 'receipt'], 'safe'],
+           [['id', 'perusahaan_id', 'divisi_id', 'jabatan_id','penyimpanan_id'], 'integer'],
+           [['no_surat', 'tema', 'detail', 'tanggal_simpan', 'jenis', 'dikirim_ke', 'created_at', 'modified_at', 'receipt'], 'safe'],
         ];
     }
 
@@ -60,11 +60,12 @@ class ArsipSearch extends Arsip
 
         $query->andFilterWhere([
            'id' => $this->id,
+           'detail' => $this->detail,
+           'tema' => $this->tema,
            //'tanggal_simpan' => $this->tanggal_simpan,
            'perusahaan_id' => $this->perusahaan_id,
            'divisi_id' => $this->divisi_id,
            'dikirim_ke' => $this->dikirim_ke,
-           'tema_id' => $this->tema_id,
            'jabatan_id' => $this->jabatan_id,
            'penyimpanan_id' => $this->penyimpanan_id,
             'jenis' => $this->jenis,

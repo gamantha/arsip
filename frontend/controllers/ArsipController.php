@@ -276,9 +276,9 @@ echo 'not valid URL';
                  $year = new Expression('NOW()');
                  $yyyy = substr($year,0,4);
                  $model->year = intval($model->tanggal_simpan);
-                 ArrayHelper::map(Divisi::find()->asArray()->All(), 'divisi_id', 'nama_divisi');
-                 ArrayHelper::map(Tema::find()->asArray()->All(), 'tema_id', 'tema');
-                 $model->detail = $model->no_surat . '/' . $model->divisi->nama_divisi . '/' . $model->tema->tema . '/' . intval($model->tanggal_simpan);
+                 //ArrayHelper::map(Divisi::find()->asArray()->All(), 'divisi_id', 'nama_divisi');
+                 //ArrayHelper::map(Tema::find()->asArray()->All(), 'tema_id', 'tema');
+                 //$model->detail = $model->no_surat . '/' . $model->divisi->nama_divisi . '/' . $model->tema->tema . '/' . intval($model->tanggal_simpan);
                  //Nosurat/napa dept/ditujukan ke/perihal/yg menandtangani/bulan romawi/tahun
          if ($model->save())
          {
@@ -345,7 +345,7 @@ echo 'not valid URL';
     public function actionMpdf1() {
         echo $_GET['ArsipSearch']['no_surat'];
     echo $_GET['ArsipSearch']['divisi_id'];
-    echo $_GET['ArsipSearch']['tema_id'];
+    echo $_GET['ArsipSearch']['tema'];
     echo $_GET['ArsipSearch']['jabatan_id'];
     echo $_GET['ArsipSearch']['penyimpanan_id'];
     echo $_GET['ArsipSearch']['jenis'];

@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     
     
-    <?= Html::a('<i class="fa glyphicon glyphicon-print"></i> Laporan', ['/arsip/mpdf1?' . 'ArsipSearch[no_surat]=' . $_GET['ArsipSearch']['no_surat'] .                                                                           '&ArsipSearch[divisi_id]=' . $_GET['ArsipSearch']['divisi_id'] .                                                                         '&ArsipSearch[tema_id]=' . $_GET['ArsipSearch']['tema_id'] .
+    <?= Html::a('<i class="fa glyphicon glyphicon-print"></i> Laporan', ['/arsip/mpdf1?' . 'ArsipSearch[no_surat]=' . $_GET['ArsipSearch']['no_surat'] .                                                                           '&ArsipSearch[divisi_id]=' . $_GET['ArsipSearch']['divisi_id'] .                                                                         '&ArsipSearch[tema]=' . $_GET['ArsipSearch']['tema'] .
                                                           '&ArsipSearch[jabatan_id]=' . $_GET['ArsipSearch']['jabatan_id'] .                                                                       '&ArsipSearch[penyimpanan_id]=' . $_GET['ArsipSearch']['penyimpanan_id'] .                                                               '&ArsipSearch[jenis]=' . $_GET['ArsipSearch']['jenis'] .
                                                           '&ArsipSearch[created_at]=' . $_GET['ArsipSearch']['created_at'] .                                                                       '&ArsipSearch[modified_at]=' . $_GET['ArsipSearch']['modified_at'] .                                                                     '&ArsipSearch[receipt]=' . $_GET['ArsipSearch']['receipt'] .
                                                           '&id=' . $_GET['id']], [
@@ -51,12 +51,8 @@ $this->params['breadcrumbs'][] = $this->title;
              'label'=>'Nama Divisi',
 			 'value'=>function($data) {return $data->divisi->nama_divisi;},
            ],
-
-			[
-              'attribute' => 'tema_id',
-              'label'=>'Perihal',
-			  'value'=>function($data) {return $data->tema->tema;},
-           ],
+            
+            'tema',
 
 
 

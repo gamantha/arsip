@@ -25,7 +25,8 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'no_surat')->textInput(['maxlength' => true]) ?>
 
-
+    <?= $form->field($model, 'detail')->textInput(['maxlength' => true]) ?>
+    
     <?= $form->field($model, 'tanggal_simpan')->textInput() ?>
 
 	<?php
@@ -39,14 +40,11 @@ use yii\helpers\Url;
   ?>
 
 
-
+<?= $form->field($model, 'tema')->textInput(['maxlength' => true]) ?>
     <?php $dataList=ArrayHelper::map(Divisi::find()->asArray()->all(), 'divisi_id', 'nama_divisi');?>
 	 <?=$form->field($model, 'divisi_id')->dropDownList($dataList,
          ['prompt'=>'-Pilih Divisi-']) ?>
 
-    <?php $dataList=ArrayHelper::map(Tema::find()->asArray()->all(), 'tema_id', 'tema');?>
-	 <?=$form->field($model, 'tema_id')->dropDownList($dataList,
-         ['prompt'=>'-Pilih Perihal-']) ?>
 
    <?php $dataList=ArrayHelper::map(Jabatan::find()->asArray()->all(), 'jabatan_id', 'nama_jabatan');?>
 	 <?=$form->field($model, 'jabatan_id')->dropDownList($dataList,

@@ -19,7 +19,7 @@ foreach($projects as $project){
  echo '<p><a class="btn btn-default" href="'. Url::toRoute(['site/pilih?' . 'ArsipSearch[no_surat]=' 
                                                                              . '&ArsipSearch[divisi_id]=' 
                                                                              . '&ArsipSearch[divisi_id]='
-                                                                             . '&ArsipSearch[tema_id]='
+                                                                             . '&ArsipSearch[tema]='
                                                                              . '&ArsipSearch[jabatan_id]='
                                                                              . '&ArsipSearch[penyimpanan_id]='
                                                                              . '&ArsipSearch[jenis]='

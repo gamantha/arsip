@@ -34,9 +34,9 @@ class Nonsurat extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['no_surat', 'tanggal_simpan', 'perusahaan_id', 'divisi_id', 'tema_id', 'penyimpanan_id', 'status', 'created_at', 'modified_at'], 'required'],
+            [['no_surat', 'tanggal_simpan', 'perusahaan_id', 'divisi_id', 'tema', 'penyimpanan_id', 'status', 'created_at'], 'required'],
             [['tanggal_simpan', 'created_at', 'modified_at'], 'safe'],
-            [['perusahaan_id', 'divisi_id', 'tema_id', 'penyimpanan_id'], 'integer'],
+            [['perusahaan_id', 'divisi_id', 'penyimpanan_id'], 'integer'],
             [['status'], 'string'],
             [['no_surat'], 'string', 'max' => 255],
             [['no_surat'], 'unique'],
@@ -50,11 +50,11 @@ class Nonsurat extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'no_surat' => Yii::t('app', 'No Arsip'),
+            'no_surat' => Yii::t('app', 'No Non Surat'),
             'tanggal_simpan' => Yii::t('app', 'Tanggal Simpan'),
             'perusahaan_id' => Yii::t('app', 'Perusahaan ID'),
             'divisi_id' => Yii::t('app', 'Divisi ID'),
-            'tema_id' => Yii::t('app', 'Tema ID'),
+            'tema' => Yii::t('app', 'Tema'),
             'penyimpanan_id' => Yii::t('app', 'Penyimpanan ID'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
@@ -94,10 +94,6 @@ class Nonsurat extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTema()
-    {
-        return $this->hasOne(Tema::className(), ['tema_id' => 'tema_id']);
-    }
 
     /**
      * @inheritdoc

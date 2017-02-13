@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <p>
         <?= Html::a('Simpan Non Surat', ['arsip/create/' . $_GET['id']], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Export to PDF', ['arsip/indexpt2?' . 'ArsipSearch[no_surat]=' . $_GET['ArsipSearch']['no_surat'] .                                                                           '&ArsipSearch[divisi_id]=' . $_GET['ArsipSearch']['divisi_id'] .                                                                         '&ArsipSearch[tema_id]=' . $_GET['ArsipSearch']['tema_id'] .
+        <?= Html::a('Export to PDF', ['arsip/indexpt2?' . 'ArsipSearch[no_surat]=' . $_GET['ArsipSearch']['no_surat'] .                                                                           '&ArsipSearch[divisi_id]=' . $_GET['ArsipSearch']['divisi_id'] .                                                                         '&ArsipSearch[tema]=' . $_GET['ArsipSearch']['tema'] .
                                                           '&ArsipSearch[jabatan_id]=' . $_GET['ArsipSearch']['jabatan_id'] .                                                                       '&ArsipSearch[penyimpanan_id]=' . $_GET['ArsipSearch']['penyimpanan_id'] .                                                               '&ArsipSearch[jenis]=' . $_GET['ArsipSearch']['jenis'] .
                                                           '&ArsipSearch[created_at]=' . $_GET['ArsipSearch']['created_at'] .                                                                       '&ArsipSearch[modified_at]=' . $_GET['ArsipSearch']['modified_at'] .                                                                     '&ArsipSearch[receipt]=' . $_GET['ArsipSearch']['receipt'] .
                                                           '&id=' . $_GET['id']], ['class' => 'btn btn-danger']) ?>
@@ -63,13 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
              'value'=>function($data) {return $data->divisi->nama_divisi;},
            ],
 
-			[
-              'attribute' => 'tema_id',
-             'label'=>'Perihal',
-			  //'filter'=>array('1'=>'PROD','2'=>'KU','3'=>'LG','4'=>'MRK','5'=>'PRC','6'=>'UM'),
-     'filter' => ArrayHelper::map(Tema::find()->asArray()->All(), 'tema_id', 'tema'),
-             'value'=>function($data) {return $data->tema->tema;},
-           ],
+            'tema',
 
 
 

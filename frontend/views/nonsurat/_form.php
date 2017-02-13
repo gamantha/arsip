@@ -40,9 +40,7 @@ use app\models\Penyimpanan;
 	 <?=$form->field($model, 'divisi_id')->dropDownList($dataList,
          ['prompt'=>'-Pilih Divisi-']) ?>
 
-    <?php $dataList=ArrayHelper::map(Tema::find()->asArray()->all(), 'tema_id', 'tema');?>
-	 <?=$form->field($model, 'tema_id')->dropDownList($dataList,
-         ['prompt'=>'-Pilih Perihal-']) ?>
+    <?= $form->field($model, 'tema')->textInput(['maxlength' => true]) ?>
 
     <?php $dataList=ArrayHelper::map(Penyimpanan::find()->asArray()->all(), 'penyimpanan_id', 'tempat_penyimpanan');?>
 	 <?=$form->field($model, 'penyimpanan_id')->dropDownList($dataList,

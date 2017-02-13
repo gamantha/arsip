@@ -45,9 +45,9 @@ class Arsip extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['no_surat', 'tanggal_simpan', 'perusahaan_id', 'divisi_id', 'tema_id', 'jabatan_id', 'penyimpanan_id', 'jenis', 'year', 'detail'], 'required'],
+            [['no_surat', 'tanggal_simpan', 'perusahaan_id', 'divisi_id', 'tema', 'jabatan_id', 'penyimpanan_id', 'jenis', 'year', 'detail'], 'required'],
             [['tanggal_simpan', 'created_at', 'modified_at'], 'safe'],
-            [['perusahaan_id', 'divisi_id', 'tema_id', 'jabatan_id', 'penyimpanan_id', 'year'], 'integer'],
+            [['perusahaan_id', 'divisi_id', 'jabatan_id', 'penyimpanan_id', 'year'], 'integer'],
             [['jenis', 'receipt'], 'string'],
             [['no_surat', 'dikirim_ke', 'detail'], 'string', 'max' => 255],
             [['no_surat', 'year'], 'unique', 'targetAttribute' => ['no_surat', 'year'], 'message' => 'The combination of No Surat and Year has already been taken.'],
@@ -55,7 +55,6 @@ class Arsip extends \yii\db\ActiveRecord
             [['divisi_id'], 'exist', 'skipOnError' => true, 'targetClass' => Divisi::className(), 'targetAttribute' => ['divisi_id' => 'divisi_id']],
             [['jabatan_id'], 'exist', 'skipOnError' => true, 'targetClass' => Jabatan::className(), 'targetAttribute' => ['jabatan_id' => 'jabatan_id']],
             [['perusahaan_id'], 'exist', 'skipOnError' => true, 'targetClass' => Perusahaan::className(), 'targetAttribute' => ['perusahaan_id' => 'perusahaan_id']],
-            [['tema_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tema::className(), 'targetAttribute' => ['tema_id' => 'tema_id']],
         ];
     }
 
@@ -70,7 +69,7 @@ class Arsip extends \yii\db\ActiveRecord
             'tanggal_simpan' => Yii::t('app', 'Tanggal Simpan'),
             'perusahaan_id' => Yii::t('app', 'Perusahaan ID'),
             'divisi_id' => Yii::t('app', 'Divisi ID'),
-            'tema_id' => Yii::t('app', 'Tema ID'),
+            'tema' => Yii::t('app', 'Tema'),
             'jabatan_id' => Yii::t('app', 'Jabatan ID'),
             'penyimpanan_id' => Yii::t('app', 'Penyimpanan ID'),
             'jenis' => Yii::t('app', 'Jenis'),
@@ -118,11 +117,6 @@ class Arsip extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTema()
-    {
-        return $this->hasOne(Tema::className(), ['tema_id' => 'tema_id']);
-    }
-
     /**
      * @inheritdoc
      * @return ArsipQuery the active query used by this AR class.
