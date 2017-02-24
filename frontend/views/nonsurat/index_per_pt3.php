@@ -42,10 +42,12 @@ $this->params['breadcrumbs'][] = $this->title;
    'rowOptions' => function ($model, $index, $widget, $grid){
 
 
-    $onemonth = new Expression('DATE_ADD(NOW(), INTERVAL 1 MONTH)');
+    //$onemonth = new Expression('DATE_ADD(NOW(), INTERVAL 1 MONTH)');
+//date('Y-m-d', strtotime($effectiveDate . "+3 months") );
 
-
-
+//echo $model->expire_date;
+$onemonth = date("Y-m-d", strtotime(date("Y-m-d") . "+1 months"));
+//echo '<br/>';
     if ($model->status == 'expired')
      {   $color = 'red';
       $fontcolor = 'white';
