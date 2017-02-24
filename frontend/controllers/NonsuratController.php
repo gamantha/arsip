@@ -306,7 +306,9 @@ $dataProvider = new ActiveDataProvider([
     
     $searchModel = new NonsuratSearch();
     $searchparams = Yii::$app->request->queryParams;
+        $searchparams["NonsuratSearch"]["perusahaan_id"] = $_GET['id'] ;
         $dataProvider = $searchModel->search($searchparams);
+
         $pdf = new Pdf([
             'mode' => Pdf::MODE_CORE, // leaner size using standard fonts
             'content' => $this->renderPartial('index_per_pt4', [
