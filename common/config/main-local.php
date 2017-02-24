@@ -3,9 +3,9 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=192.168.100.49;dbname=sigarsip',
+            'dsn' => 'mysql:host=localhost;dbname=sig_arsipdb',
             'username' => 'root',
-            'password' => 'sanggar',
+            'password' => '',
             'charset' => 'utf8',
         ],
         'mailer' => [

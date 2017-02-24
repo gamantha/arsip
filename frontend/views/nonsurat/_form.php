@@ -25,14 +25,16 @@ use app\models\Penyimpanan;
 
     <?= $form->field($model, 'no_surat')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tanggal_simpan')->textInput() ?>
+
     
     <?php
-     	DatePicker::widget([
+    echo 'Tanggal Simpan<br/>';
+     	echo DatePicker::widget([
        'model' => $model,
        'attribute' => 'tanggal_simpan',
        'language' => 'en',
        'dateFormat' => 'yyyy-MM-dd',
+       'options' => ['class' => 'form-control']
      ]);
     ?>
     
@@ -40,9 +42,24 @@ use app\models\Penyimpanan;
 	 <?=$form->field($model, 'divisi_id')->dropDownList($dataList,
          ['prompt'=>'-Pilih Divisi-']) ?>
 
+    <?= $form->field($model, 'judul')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'tema')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'deskripsi')->textArea(['maxlength' => true]) ?>
+     <?= $form->field($model, 'tipe')->dropDownList(['buku' => 'Buku', 'dokumen' => 'Dokumen', 'uu' => 'UU', 'peraturan' => 'Peraturan', 'lain-lain' => 'Lain-lain'],['prompt'=>'Pilih Jenis Surat']); ?>
+    
+    <?php
+    echo 'Expire date<br/>';
+        echo DatePicker::widget([
+       'model' => $model,
+       'attribute' => 'expire_date',
+       'language' => 'en',
+       'dateFormat' => 'yyyy-MM-dd',
+       'options' => ['class' => 'form-control']
+     ]);
+    ?>
 
-    <?php $dataList=ArrayHelper::map(Penyimpanan::find()->asArray()->all(), 'penyimpanan_id', 'tempat_penyimpanan');?>
+
+    <?php $dataList=ArrayHelper::map(Penyimpanan::find()->andWhere(['kategori' => 'nonarsip'])->asArray()->all(), 'penyimpanan_id', 'tempat_penyimpanan');?>
 	 <?=$form->field($model, 'penyimpanan_id')->dropDownList($dataList,
          ['prompt'=>'-Pilih Penyimpanan-']) ?>
 

@@ -50,7 +50,7 @@ use yii\helpers\Url;
 	 <?=$form->field($model, 'jabatan_id')->dropDownList($dataList,
          ['prompt'=>'-Pilih Jabatan-']) ?>
 
-    <?php $dataList=ArrayHelper::map(Penyimpanan::find()->asArray()->all(), 'penyimpanan_id', 'tempat_penyimpanan');?>
+    <?php $dataList=ArrayHelper::map(Penyimpanan::find()->andWhere(['kategori' => 'umum'])->asArray()->all(), 'penyimpanan_id', 'tempat_penyimpanan');?>
 	 <?=$form->field($model, 'penyimpanan_id')->dropDownList($dataList,
          ['prompt'=>'-Pilih Penyimpanan-']) ?>
 

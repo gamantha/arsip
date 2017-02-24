@@ -14,6 +14,8 @@ use yii\filters\VerbFilter;
 use yii\db\Expression;
 use kartik\mpdf\Pdf;
 
+use yii\data\ActiveDataProvider;
+
 /**
  * NonsuratController implements the CRUD actions for Nonsurat model.
  */
@@ -107,6 +109,47 @@ class NonsuratController extends Controller
 
     }
     
+
+    public function actionSearch()
+    {
+
+
+$tags=[];
+$tagstring='';
+        if ($_POST) {
+            //echo '<br/><br/><br/><br/><br/><br/>search tema : ' . $_POST['tags'];
+            $tagstring = trim($_POST['tags']);
+            $tagarray = explode(',', $tagstring);
+            foreach ($tagarray as $key => $value) {
+                array_push($tags, $value);
+            //  $tags = $tags . ',' . $value;
+
+            }
+        }
+//echo '<br/><br/>'.$tags;
+        //$tags = ['makan', 'kpp'];
+        $query = Nonsurat::find()
+        ->andWhere(['like','tema', $tags]);
+        //->All();
+$dataProvider = new ActiveDataProvider([
+    'query' => $query,
+    'pagination' => [
+        //'pageSize' => 10,
+    ],
+    'sort' => [
+        'defaultOrder' => [
+
+        ]
+    ],
+]);
+
+            return $this->render('search',[
+                'searchtags' => $tagstring,
+                'dataProvider' => $dataProvider,
+                ]);
+    }
+
+
     public function actionIndexpt3($id)
     {
 
@@ -187,6 +230,7 @@ class NonsuratController extends Controller
         if ($model->load(Yii::$app->request->post())) {
                  $model->perusahaan_id = $id;
                   $model->created_at = new Expression('NOW()');
+                                    $model->modified_at = new Expression('NOW()');
          if ($model->save())
          {
            echo 'berhasil';
@@ -320,4 +364,51 @@ class NonsuratController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function beforeAction($action) {
+
+        // This is of no use as this runs *after* the 'behaviors' method
+$today = new Expression('NOW()');
+       $changetoinvalids = Nonsurat::find()->andWhere(['<=','expire_date',$today])
+->andWhere(['status' => 'valid'])
+       ->All();
+       if (sizeof($changetoinvalids) > 0)
+       {
+          foreach ($changetoinvalids as $key2 => $value2) {
+            # code...
+             Yii::$app->getSession()->addFlash('danger', $value2->judul .  ' is now expired');
+             $value2->status = 'expired';
+             $value2->save();
+          }
+             
+       }
+
+$onemonth = new Expression('DATE_ADD(NOW(), INTERVAL 1 MONTH)');
+       $about_to_invalids = Nonsurat::find()->andWhere(['<=','expire_date',$onemonth])
+->andWhere(['status' => 'valid'])
+       ->All();
+       if (sizeof($about_to_invalids) > 0)
+       {
+          foreach ($about_to_invalids as $key1 => $value1) {
+            # code...
+             Yii::$app->getSession()->addFlash('warning', $value1->judul .  ' is about to expire in a month');
+          }
+             
+       }
+
+
+
+
+    if (!parent::beforeAction($action)) {
+        return false;
+    }
+
+    // other custom code here
+
+    return true; // or false to not run the action
+
+
+    }
+
+
 }

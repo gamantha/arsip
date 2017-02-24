@@ -19,7 +19,7 @@ class NonsuratSearch extends Nonsurat
     {
         return [
             [['id', 'perusahaan_id', 'divisi_id', 'penyimpanan_id'], 'integer'],
-            [['no_surat', 'tanggal_simpan', 'tema', 'status', 'created_at', 'modified_at'], 'safe'],
+               [['no_surat', 'judul', 'tipe', 'tanggal_simpan', 'tema', 'deskripsi', 'status', 'expire_date', 'created_at', 'modified_at'], 'safe'],
         ];
     }
 
@@ -66,11 +66,18 @@ class NonsuratSearch extends Nonsurat
             'tema' => $this->tema,
             'penyimpanan_id' => $this->penyimpanan_id,
             //'created_at' => $this->created_at,
+               'expire_date' => $this->expire_date,
+           'created_at' => $this->created_at,
             'modified_at' => $this->modified_at,
         ]);
 
         $query->andFilterWhere(['like', 'no_surat', $this->no_surat])
             ->andFilterWhere(['between', 'created_at', $this->created_at, (isset(explode(' ',$this->created_at)[2]) ? explode(' ',$this->created_at)[2] : $this->created_at)])
+                   ->andFilterWhere(['like', 'judul', $this->judul])
+           ->andFilterWhere(['like', 'tipe', $this->tipe])
+           ->andFilterWhere(['like', 'tema', $this->tema])
+           ->andFilterWhere(['like', 'deskripsi', $this->deskripsi])
+
             ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;

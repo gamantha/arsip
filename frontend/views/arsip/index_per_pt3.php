@@ -27,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
     
     
     <p>
+
         <?= Html::a('Simpan Non Surat', ['arsip/create/' . $_GET['id']], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Export to PDF', ['arsip/indexpt2?' . 'ArsipSearch[no_surat]=' . $_GET['ArsipSearch']['no_surat'] .                                                                           '&ArsipSearch[divisi_id]=' . $_GET['ArsipSearch']['divisi_id'] .                                                                         '&ArsipSearch[tema]=' . $_GET['ArsipSearch']['tema'] .
                                                           '&ArsipSearch[jabatan_id]=' . $_GET['ArsipSearch']['jabatan_id'] .                                                                       '&ArsipSearch[penyimpanan_id]=' . $_GET['ArsipSearch']['penyimpanan_id'] .                                                               '&ArsipSearch[jenis]=' . $_GET['ArsipSearch']['jenis'] .

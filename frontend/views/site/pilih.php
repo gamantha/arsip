@@ -39,6 +39,17 @@ echo '<p><a class="btn btn-info" href="'. Url::toRoute(['nonsurat/indexpt3?' . '
                                                                              . '&id=' . $_GET['id']]) . '" >Non SURAT</a></p>';
 
 
+echo '<p><a class="btn btn-warning" href="'. Url::toRoute(['nonsurat/indexpt3?' . 'NonsuratSearch[no_surat]=' 
+                                                                             . '&NonsuratSearch[divisi_id]='
+                                                                             . '&NonsuratSearch[tema]='
+                                                                             . '&NonsuratSearch[penyimpanan_id]='
+                                                                             . '&NonsuratSearch[status]='
+                                                                             . '&NonsuratSearch[created_at]='
+                                                                             . '&NonsuratSearch[modified_at]='
+                                                                             . '&id=' . $_GET['id']]) . '" >Kendaraan</a></p>';
+
+
+        
         
 ?>
 
