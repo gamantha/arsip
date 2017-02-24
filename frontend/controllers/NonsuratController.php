@@ -302,7 +302,7 @@ $dataProvider = new ActiveDataProvider([
     echo $_GET['NonsuratSearch']['status'];
     echo $_GET['NonsuratSearch']['created_at'];
     echo $_GET['NonsuratSearch']['modified_at'];
-        echo $_GET['NonsuratSearch']['id'];
+        echo $_GET['id'];
     
     $searchModel = new NonsuratSearch();
     $searchparams = Yii::$app->request->queryParams;
