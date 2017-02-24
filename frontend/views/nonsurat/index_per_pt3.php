@@ -31,7 +31,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
                     <?= Html::a('Search by tags / tema', ['nonsurat/search/' . $_GET['id']], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Simpan Non Surat', ['nonsurat/create/' . $_GET['id']], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Export to PDF', ['nonsurat/indexpt4?' . 'NonsuratSearch[no_surat]=' . $_GET['NonsuratSearch']['no_surat'] .                                                                           '&NonsuratSearch[divisi_id]=' . $_GET['NonsuratSearch']['divisi_id'] .                                                                         '&NonsuratSearch[tema]=' . $_GET['NonsuratSearch']['tema'] .                                                                     '&NonsuratSearch[penyimpanan_id]=' . $_GET['NonsuratSearch']['penyimpanan_id'] .                                                               '&NonsuratSearch[status]=' . $_GET['NonsuratSearch']['status'] .
+        <?= Html::a('Export to PDF', ['nonsurat/indexpt4?' . 'NonsuratSearch[no_surat]=' . $_GET['NonsuratSearch']['no_surat'] .                                                                           '&NonsuratSearch[divisi_id]=' . $_GET['NonsuratSearch']['divisi_id'] .                                                                         
+
+          '&NonsuratSearch[tema]=' . $_GET['NonsuratSearch']['tema'] .                                                                     '&NonsuratSearch[penyimpanan_id]=' . $_GET['NonsuratSearch']['penyimpanan_id'] .                                                               '&NonsuratSearch[status]=' . $_GET['NonsuratSearch']['status'] .
                                                           '&NonsuratSearch[created_at]=' . $_GET['NonsuratSearch']['created_at'] .                                                                       '&NonsuratSearch[modified_at]=' . $_GET['NonsuratSearch']['modified_at'] .                                                                     '&id=' . $_GET['id']], ['class' => 'btn btn-danger']) ?>
     </p>
     
@@ -94,7 +96,7 @@ $onemonth = date("Y-m-d", strtotime(date("Y-m-d") . "+1 months"));
              'value'=>function($data) {return $data->divisi->nama_divisi;},
            ],
            'judul',
-			//'tema',
+			'tema',
 
 
 			[
