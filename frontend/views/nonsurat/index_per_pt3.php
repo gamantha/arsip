@@ -53,13 +53,18 @@ $onemonth = date("Y-m-d", strtotime(date("Y-m-d") . "+1 months"));
       $fontcolor = 'white';
     }
       else {
-        if ($model->expire_date <= $onemonth) {
-        $color = 'yellow';
-        $fontcolor = 'black';
-        } else {
-        $color = 'none';
-        $fontcolor = 'black';
-      }
+          if(isset($model->expire_date) && !empty($model->expire_date)) {
+              if ($model->expire_date <= $onemonth) {
+              $color = 'yellow';
+              $fontcolor = 'black';
+              } else {
+              $color = 'none';
+              $fontcolor = 'black';
+            }
+          } else {
+                          $color = 'none';
+              $fontcolor = 'black';
+          }
       }
       return ['style'=>'color:'.$fontcolor.'; background-color:'.$color.';'];
     },
