@@ -22,7 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     
     
-    <?= Html::a('<i class="fa glyphicon glyphicon-print"></i> Laporan', ['/nonsurat/mpdf1?' . 'NonsuratSearch[no_surat]=' . $_GET['NonsuratSearch']['no_surat'] .                                                                           '&NonsuratSearch[divisi_id]=' . $_GET['NonsuratSearch']['divisi_id'] .                                                                         '&NonsuratSearch[tema]=' . $_GET['NonsuratSearch']['tema'] .
+    <?= Html::a('<i class="fa glyphicon glyphicon-print"></i> Laporan', ['/nonsurat/mpdf1?' . 'NonsuratSearch[no_surat]=' . $_GET['NonsuratSearch']['no_surat'] .                                                                           '&NonsuratSearch[divisi_id]=' . $_GET['NonsuratSearch']['divisi_id'] .                                                                         
+       // '&NonsuratSearch[tema]=' . $_GET['NonsuratSearch']['tema'] .
+
+
                                                           '&NonsuratSearch[penyimpanan_id]=' . $_GET['NonsuratSearch']['penyimpanan_id'] .                                                               '&NonsuratSearch[status]=' . $_GET['NonsuratSearch']['status'] .
                                                           '&NonsuratSearch[created_at]=' . $_GET['NonsuratSearch']['created_at'] .                                                                       '&NonsuratSearch[modified_at]=' . $_GET['NonsuratSearch']['modified_at'] .
                                                           '&id=' . $_GET['id']], [
@@ -52,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			 'value'=>function($data) {return $data->divisi->nama_divisi;},
            ],
 
-			'tema',
+			//'tema',
 
 			[
              'attribute' => 'penyimpanan_id',

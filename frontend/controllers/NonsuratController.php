@@ -297,7 +297,7 @@ $dataProvider = new ActiveDataProvider([
     public function actionMpdf1() {
         echo $_GET['NonsuratSearch']['no_surat'];
     echo $_GET['NonsuratSearch']['divisi_id'];
-    echo $_GET['NonsuratSearch']['tema'];
+    //echo $_GET['NonsuratSearch']['tema'];
     echo $_GET['NonsuratSearch']['penyimpanan_id'];
     echo $_GET['NonsuratSearch']['status'];
     echo $_GET['NonsuratSearch']['created_at'];
