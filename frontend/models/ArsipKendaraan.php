@@ -13,10 +13,10 @@ use Yii;
  * @property string $keterangan
  * @property string $tempat
  * @property int $biaya
- * @property string $pic
  * @property string $tipe
  * @property string $no_surat
  * @property int $penyimpanan_id
+ * @property string $pic
  * @property string $expire_date
  * @property string $status
  * @property string $created_at
@@ -41,11 +41,10 @@ class ArsipKendaraan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id'], 'required'],
-            [['id', 'kendaraan_id', 'biaya', 'penyimpanan_id'], 'integer'],
             [['tanggal', 'created_at', 'modified_at'], 'safe'],
+            [['kendaraan_id', 'biaya', 'penyimpanan_id'], 'integer'],
             [['keterangan'], 'string'],
-            [['tempat', 'pic', 'tipe', 'no_surat', 'expire_date', 'status'], 'string', 'max' => 255],
+            [['tempat', 'tipe', 'no_surat', 'pic', 'expire_date', 'status'], 'string', 'max' => 255],
             [['kendaraan_id'], 'exist', 'skipOnError' => true, 'targetClass' => Kendaraan::className(), 'targetAttribute' => ['kendaraan_id' => 'id']],
             [['penyimpanan_id'], 'exist', 'skipOnError' => true, 'targetClass' => Penyimpanan::className(), 'targetAttribute' => ['penyimpanan_id' => 'penyimpanan_id']],
         ];
@@ -63,10 +62,10 @@ class ArsipKendaraan extends \yii\db\ActiveRecord
             'keterangan' => Yii::t('app', 'Keterangan'),
             'tempat' => Yii::t('app', 'Tempat'),
             'biaya' => Yii::t('app', 'Biaya'),
-            'pic' => Yii::t('app', 'Pic'),
             'tipe' => Yii::t('app', 'Tipe'),
             'no_surat' => Yii::t('app', 'No Surat'),
             'penyimpanan_id' => Yii::t('app', 'Penyimpanan ID'),
+            'pic' => Yii::t('app', 'Pic'),
             'expire_date' => Yii::t('app', 'Expire Date'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),

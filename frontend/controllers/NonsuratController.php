@@ -6,7 +6,8 @@ use Yii;
 use app\models\Nonsurat;
 use app\models\UploadForm;
 use app\models\NonsuratSearch;
-use app\models\File;
+//use app\models\File;
+use app\models\Filenonsurat;
 use yii\web\UploadedFile;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -268,7 +269,7 @@ $dataProvider = new ActiveDataProvider([
            ];
 
         $model = $this->findModel($id);
-        $filemodel = new File();
+        $filemodel = new Filenonsurat();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->getSession()->setFlash('success', 'Data Berhasil Tersimpan');
@@ -306,7 +307,7 @@ $dataProvider = new ActiveDataProvider([
     
     $searchModel = new NonsuratSearch();
     $searchparams = Yii::$app->request->queryParams;
-        $searchparams["NonsuratSearch"]["perusahaan_id"] = $_GET['id'] ;
+        $searchparams["NonsuratSearch"]["perusahaan_id"] = $_GET['id'];
         $dataProvider = $searchModel->search($searchparams);
 
         $pdf = new Pdf([
@@ -332,19 +333,19 @@ $dataProvider = new ActiveDataProvider([
     {
         
         $uploadmodel = new UploadForm();
-        $model = new File();
+        $model = new Filenonsurat();
 
         if (Yii::$app->request->isPost) {
             $uploadmodel->docFile = UploadedFile::getInstance($uploadmodel, 'docFile');
              
                     $model->created_at = new \yii\db\Expression('NOW()');
-                    $model->arsip_id = $id;
+                    $model->nonsurat_id = $id;
                     $model->save();
-                    $uploadmodel->upload($model->id);
+                    $uploadmodel->uploadNonsurat($model->id);
                     $model->file_location = $model->id . '_' . $uploadmodel->docFile->baseName . '.' . $uploadmodel->docFile->extension;
                     $model->save();
                     Yii::$app->getSession()->setFlash('success', 'Data Berhasil Tersimpan');
-                    return $this->redirect(['nonsurat/update/'. $model->arsip_id]);
+                    return $this->redirect(['nonsurat/update/'. $model->nonsurat_id]);
 
             
         } //isPost

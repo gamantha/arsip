@@ -34,6 +34,42 @@ class UploadForm extends Model
             return false;
         }
     }
+    public function uploadImageKendaraan($id)
+    {
+        if ($this->validate()) {
+            
+            $filename = $this->docFile->baseName;
+         //   $this->imageFile->saveAs('uploads/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+            $this->docFile->saveAs('uploads/images/kendaraan/' . $id . '_' . $filename . '.' . $this->docFile->extension);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function uploadArsipKendaraan($id)
+    {
+        if ($this->validate()) {
+            
+            $filename = $this->docFile->baseName;
+         //   $this->imageFile->saveAs('uploads/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+            $this->docFile->saveAs('uploads/kendaraan/' . $id . '_' . $filename . '.' . $this->docFile->extension);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function uploadNonsurat($id)
+    {
+        if ($this->validate()) {
+            
+            $filename = $this->docFile->baseName;
+         //   $this->imageFile->saveAs('uploads/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+            $this->docFile->saveAs('uploads/nonsurat/' . $id . '_' . $filename . '.' . $this->docFile->extension);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 ?>

@@ -18,6 +18,7 @@ use Yii;
  * @property string $alamat_pemilik
  * @property string $plat
  * @property string $catatan
+ * @property string $image
  *
  * @property ArsipKendaraan[] $arsipKendaraans
  */
@@ -38,7 +39,7 @@ class Kendaraan extends \yii\db\ActiveRecord
     {
         return [
             [['catatan'], 'string'],
-            [['nama', 'warna', 'merk', 'model', 'tahun', 'driver', 'nama_pemilik', 'alamat_pemilik', 'plat'], 'string', 'max' => 255],
+            [['nama', 'warna', 'merk', 'model', 'tahun', 'driver', 'nama_pemilik', 'alamat_pemilik', 'plat', 'image'], 'string', 'max' => 255],
         ];
     }
 
@@ -59,6 +60,7 @@ class Kendaraan extends \yii\db\ActiveRecord
             'alamat_pemilik' => Yii::t('app', 'Alamat Pemilik'),
             'plat' => Yii::t('app', 'Plat'),
             'catatan' => Yii::t('app', 'Catatan'),
+            'image' => Yii::t('app', 'Image'),
         ];
     }
 
