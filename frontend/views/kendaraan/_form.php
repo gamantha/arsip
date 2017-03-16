@@ -37,10 +37,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'plat')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'catatan')->textarea(['rows' => 6]) ?>
-<?php echo Html::img('@web/uploads/images/kendaraan/' . $model->image); ?>
-    <?= $form->field($uploadmodel, 'docFile')->fileInput() ?>
+    <?php
 
+    /* echo $form->field($model, 'catatan')->textarea(['rows' => 6]);
+    echo Html::img('@web/uploads/images/kendaraan/' . $model->image); 
+    echo $form->field($uploadmodel, 'docFile')->fileInput();
+*/?>
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
