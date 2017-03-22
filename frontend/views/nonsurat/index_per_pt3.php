@@ -95,6 +95,7 @@ $onemonth = date("Y-m-d", strtotime(date("Y-m-d") . "+1 months"));
      'filter' => ArrayHelper::map(Divisi::find()->asArray()->All(), 'divisi_id', 'nama_divisi'),
              'value'=>function($data) {return $data->divisi->nama_divisi;},
            ],
+           'year',
            'judul',
 			'tema',
 

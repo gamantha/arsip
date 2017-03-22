@@ -19,6 +19,7 @@ use Yii;
  * @property int $penyimpanan_id
  * @property string $status
  * @property string $expire_date
+ * @property int $year
  * @property string $created_at
  * @property string $modified_at
  *
@@ -45,7 +46,7 @@ class Nonsurat extends \yii\db\ActiveRecord
             [['no_surat', 'tanggal_simpan', 'perusahaan_id', 'divisi_id', 'tema', 'penyimpanan_id', 'status', 'created_at', 'modified_at'], 'required'],
             [['tipe', 'deskripsi', 'status'], 'string'],
             [['tanggal_simpan', 'expire_date', 'created_at', 'modified_at'], 'safe'],
-            [['perusahaan_id', 'divisi_id', 'penyimpanan_id'], 'integer'],
+            [['perusahaan_id', 'divisi_id', 'penyimpanan_id', 'year'], 'integer'],
             [['no_surat', 'judul', 'tema'], 'string', 'max' => 255],
             [['no_surat'], 'unique'],
             [['divisi_id'], 'exist', 'skipOnError' => true, 'targetClass' => Divisi::className(), 'targetAttribute' => ['divisi_id' => 'divisi_id']],
@@ -72,6 +73,7 @@ class Nonsurat extends \yii\db\ActiveRecord
             'penyimpanan_id' => Yii::t('app', 'Penyimpanan ID'),
             'status' => Yii::t('app', 'Status'),
             'expire_date' => Yii::t('app', 'Expire Date'),
+            'year' => Yii::t('app', 'Year'),
             'created_at' => Yii::t('app', 'Created At'),
             'modified_at' => Yii::t('app', 'Modified At'),
         ];
@@ -100,15 +102,18 @@ class Nonsurat extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Perusahaan::className(), ['perusahaan_id' => 'perusahaan_id']);
     }
-          public function getJabatan()  
-  {  
-      return $this->hasOne(Jabatan::className(), ['jabatan_id' => 'jabatan_id']);  
-  } 
-  
+
     /**
      * @inheritdoc
      * @return NonsuratQuery the active query used by this AR class.
      */
+
+             public function getJabatan() 
+ { 
+     return $this->hasOne(Jabatan::className(), ['jabatan_id' => 'jabatan_id']); 
+ }
+
+ 
     public static function find()
     {
         return new NonsuratQuery(get_called_class());

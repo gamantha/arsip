@@ -41,8 +41,9 @@ use app\models\Penyimpanan;
     <?php $dataList=ArrayHelper::map(Divisi::find()->asArray()->all(), 'divisi_id', 'nama_divisi');?>
 	 <?=$form->field($model, 'divisi_id')->dropDownList($dataList,
          ['prompt'=>'-Pilih Divisi-']) ?>
-
+    <?= $form->field($model, 'year')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'judul')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'tema')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'deskripsi')->textArea(['maxlength' => true]) ?>
      <?= $form->field($model, 'tipe')->dropDownList(['buku' => 'Buku', 'dokumen' => 'Dokumen', 'uu' => 'UU', 'peraturan' => 'Peraturan', 'lain-lain' => 'Lain-lain'],['prompt'=>'Pilih Jenis Surat']); ?>

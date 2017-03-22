@@ -3,7 +3,7 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=sig_arsipdb',
+            'dsn' => 'mysql:host=localhost;dbname=sigarsip',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',

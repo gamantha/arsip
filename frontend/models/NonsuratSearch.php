@@ -18,7 +18,7 @@ class NonsuratSearch extends Nonsurat
     public function rules()
     {
         return [
-            [['id', 'perusahaan_id', 'divisi_id', 'penyimpanan_id'], 'integer'],
+            [['id', 'perusahaan_id', 'divisi_id', 'penyimpanan_id','year'], 'integer'],
                [['no_surat', 'judul', 'tipe', 'tanggal_simpan', 'tema', 'deskripsi', 'status', 'expire_date', 'created_at', 'modified_at'], 'safe'],
         ];
     }
@@ -65,6 +65,7 @@ class NonsuratSearch extends Nonsurat
             'divisi_id' => $this->divisi_id,
             'tema' => $this->tema,
             'penyimpanan_id' => $this->penyimpanan_id,
+           'year' => $this->year,
             //'created_at' => $this->created_at,
                'expire_date' => $this->expire_date,
            'created_at' => $this->created_at,
