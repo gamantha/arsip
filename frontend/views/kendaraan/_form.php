@@ -39,10 +39,10 @@ use yii\widgets\ActiveForm;
 
     <?php
 
-    /* echo $form->field($model, 'catatan')->textarea(['rows' => 6]);
+     echo $form->field($model, 'catatan')->textarea(['rows' => 6]);
     echo Html::img('@web/uploads/images/kendaraan/' . $model->image); 
     echo $form->field($uploadmodel, 'docFile')->fileInput();
-*/?>
+?>
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
