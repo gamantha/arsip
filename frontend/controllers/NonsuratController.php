@@ -310,6 +310,7 @@ $dataProvider = new ActiveDataProvider([
         $searchparams["NonsuratSearch"]["perusahaan_id"] = $_GET['id'];
         $dataProvider = $searchModel->search($searchparams);
 
+        $dataProvider->setPagination(false);
         $pdf = new Pdf([
             'mode' => Pdf::MODE_CORE, // leaner size using standard fonts
             'content' => $this->renderPartial('index_per_pt4', [
