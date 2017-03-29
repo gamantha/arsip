@@ -46,7 +46,7 @@ use app\models\Penyimpanan;
 
     <?= $form->field($model, 'tema')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'deskripsi')->textArea(['maxlength' => true]) ?>
-     <?= $form->field($model, 'tipe')->dropDownList(['buku' => 'Buku', 'dokumen' => 'Dokumen', 'uu' => 'UU', 'peraturan' => 'Peraturan', 'lain-lain' => 'Lain-lain'],['prompt'=>'Pilih Jenis Surat']); ?>
+     <?= $form->field($model, 'tipe')->dropDownList(['buku' => 'Buku', 'dokumen' => 'Dokumen', 'uu' => 'UU', 'Peraturan' => 'Peraturan', 'lain-lain' => 'Lain-lain'],['prompt'=>'Pilih Jenis Surat']); ?>
     
     <?php
     echo 'Expire date<br/>';
