@@ -13,7 +13,7 @@ use app\models\Nonsurat;
 use app\models\UploadForm;
 use app\models\NonsuratSearch;
 use app\models\File;
-use app\models\FileKendaraan;
+use app\models\Filekendaraan;
 use yii\web\UploadedFile;
 
 use yii\db\Expression;
