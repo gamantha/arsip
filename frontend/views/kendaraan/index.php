@@ -25,14 +25,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'nama',
+            //'id',
+            'nama_pemilik',
+            'plat',
+           /* ['label' => 'plat',
+                'value' => function($data) {return $data->nama;}
+            ],
+            */
             'warna',
             'merk',
             'model',
             // 'tahun',
             // 'driver',
-            // 'nama_pemilik',
+            // 
             // 'alamat_pemilik',
             // 'plat',
             // 'catatan:ntext',

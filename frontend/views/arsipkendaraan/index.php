@@ -30,9 +30,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'tanggal',
-            'kendaraan_id',
+            //'id',
+                  'tanggal',
+            [
+                'label' => 'nama kendaraan',
+                'value' => function($data) {
+                    return $data->kendaraan->nama;
+                }
+            ],
+            [
+                'label' => 'Merk',
+                'value' => function($data) {
+                    return $data->kendaraan->merk;
+                }
+            ],
+      
+            //'kendaraan_id',
             'keterangan:ntext',
             'tempat',
             // 'biaya',
