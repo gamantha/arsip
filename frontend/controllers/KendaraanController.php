@@ -104,8 +104,10 @@ class KendaraanController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
                         $uploadmodel->docFile = UploadedFile::getInstance($uploadmodel, 'docFile');
+                        if (isset($uploadmodel->docFile)) {
                     $uploadmodel->uploadImageKendaraan($model->id);
                        $model->image = $model->id . '_' . $uploadmodel->docFile->baseName . '.' . $uploadmodel->docFile->extension;
+                   }
                        if ($model->save()) {
                     Yii::$app->getSession()->setFlash('success', 'Data Berhasil Tersimpan');
 
