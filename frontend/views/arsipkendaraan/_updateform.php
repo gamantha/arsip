@@ -7,7 +7,7 @@ use yii\helpers\ArrayHelper;
 use app\models\Perusahaan;
 use app\models\Kendaraan;
 use app\models\Divisi;
-use app\models\FileKendaraan;
+use app\models\Filekendaraan;
 use app\models\Jabatan;
 use app\models\Filenonsurat;
 use app\models\Tema;
