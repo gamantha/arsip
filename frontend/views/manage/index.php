@@ -25,12 +25,7 @@ $this->title = 'My Yii Application';
 
           </tr>
 
-          <tr>
 
-<td> <p><a class="btn btn-lg btn-success" href="<?php echo Url::toRoute(['kendaraan/index']); ?>" width="100">Tambah kendaraan</a></p> </td>
-
-
-          </tr>
      
 		 
 		  

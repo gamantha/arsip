@@ -47,7 +47,7 @@ use app\models\Penyimpanan;
 
     <?= $form->field($model, 'biaya')->textInput()->label('Biaya(Rp)') ?>
 
-   <?= $form->field($model, 'tipe')->dropDownList(['buku' => 'Buku', 'dokumen' => 'Dokumen', 'uu' => 'UU', 'peraturan' => 'Peraturan', 'lain-lain' => 'Lain-lain'],['prompt'=>'Pilih Jenis Surat']); ?>
+   <?= $form->field($model, 'tipe')->dropDownList(['stnk'=>'stnk', 'bpkb'=>'bpkb', 'bon servis'=>'bon servis'],['prompt'=>'Pilih Jenis Surat']); ?>
 
     <?= $form->field($model, 'no_surat')->textInput(['maxlength' => true]) ?>
 
