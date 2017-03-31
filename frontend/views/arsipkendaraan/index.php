@@ -35,13 +35,14 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'nama kendaraan',
                 'value' => function($data) {
-                    return $data->kendaraan->nama;
+
+                    return isset($data->kendaraan->nama) ? $data->kendaraan->nama : '';
                 }
             ],
             [
                 'label' => 'Merk',
                 'value' => function($data) {
-                    return $data->kendaraan->merk;
+                    return isset($data->kendaraan->merk) ? $data->kendaraan->merk : '';
                 }
             ],
       
