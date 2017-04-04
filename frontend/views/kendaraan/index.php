@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
+use app\models\Kendaraan;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\KendaraanSearch */
@@ -18,7 +20,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('app', 'Create Kendaraan'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+<?php
 
+
+$plat_array = ["ID1"=>"Name1","ID2"=>"Name2"];
+
+?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -27,11 +34,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             'nama_pemilik',
-            'plat',
-           /* ['label' => 'plat',
-                'value' => function($data) {return $data->nama;}
+            //'plat',
+            ['label' => 'Plat',
+            'attribute' => 'plat',
+               'filter'=>ArrayHelper::map(Kendaraan::find()->asArray()->All(), 'plat', 'plat'),
+        
+                'value' => function($data) {return $data->plat;}
             ],
-            */
+            
             'warna',
             'merk',
             'model',
