@@ -37,7 +37,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'value' => $model->kendaraan->merk],
             'keterangan:ntext',
             'tempat',
-            'biaya',
+            ['label' => 'Biaya',
+            'value' => 'Rp.' . number_format($model->biaya)
+            ],
             'pic',
             'tipe',
             'no_surat',

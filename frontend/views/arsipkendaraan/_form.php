@@ -46,6 +46,10 @@ use app\models\Penyimpanan;
     <?= $form->field($model, 'tempat')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'biaya')->textInput()->label('Biaya(Rp)') ?>
+     <?
+     //php $form->field($model, 'biaya', ['inputOptions' => ['value' => Yii::$app->formatter->asDecimal($model->attr)]])->textInput()->label('Biaya(Rp)')
+
+     ?>
 
    <?= $form->field($model, 'tipe')->dropDownList(['stnk'=>'stnk', 'bpkb'=>'bpkb', 'bon servis'=>'bon servis'],['prompt'=>'Pilih Jenis Surat']); ?>
 

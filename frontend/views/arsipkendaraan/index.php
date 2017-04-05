@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
+use app\models\Kendaraan;   
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ArsipkendaraanSearch */
@@ -32,13 +34,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
                   'tanggal',
-            [
-                'label' => 'nama kendaraan',
-                'value' => function($data) {
 
-                    return isset($data->kendaraan->nama) ? $data->kendaraan->nama : '';
+
+            ['label' => 'nama kendaraan',
+            'attribute' => 'kendaraan_id',
+               'filter'=>ArrayHelper::map(Kendaraan::find()->asArray()->All(), 'id', 'plat'),
+        
+                'value' => function($data) {
+                    return isset($data->kendaraan->plat) ? $data->kendaraan->plat : '';
+
                 }
             ],
+            
+
             [
                 'label' => 'Merk',
                 'value' => function($data) {
