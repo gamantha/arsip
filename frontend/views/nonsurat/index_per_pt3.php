@@ -77,7 +77,11 @@ $onemonth = date("Y-m-d", strtotime(date("Y-m-d") . "+1 months"));
             ['class' => 'yii\grid\SerialColumn'],
 
 
-            'no_surat',
+                  [
+              'attribute' => 'no_surat',
+             'label'=>'No Arsip',
+
+           ],
 
 /*
 			[
@@ -98,7 +102,10 @@ $onemonth = date("Y-m-d", strtotime(date("Y-m-d") . "+1 months"));
            'year',
            'judul',
 			'tema',
-
+           [
+                         'attribute' => 'deskripsi',
+             'label'=>'Tentang',
+           ],
 
 			[
              'attribute' => 'penyimpanan_id',

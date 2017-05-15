@@ -36,7 +36,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
 
-            'no_surat',
+                     [
+              'attribute' => 'no_surat',
+             'label'=>'No Arsip',
+
+           ],
 
 
 			[
@@ -63,6 +67,10 @@ $this->params['breadcrumbs'][] = $this->title;
              'value'=>function($data) {return $data->tema->tema;},
            ],
 
+           [
+                         'attribute' => 'deskripsi',
+             'label'=>'Tentang',
+           ],
 
 
 			[

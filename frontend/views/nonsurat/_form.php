@@ -45,7 +45,7 @@ use app\models\Penyimpanan;
     <?= $form->field($model, 'judul')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'tema')->textInput(['maxlength' => true]) ?>
-        <?= $form->field($model, 'deskripsi')->textArea(['maxlength' => true]) ?>
+        <?= $form->field($model, 'deskripsi')->textArea(['maxlength' => true])->label('Tentang') ?>
      <?= $form->field($model, 'tipe')->dropDownList(['buku' => 'Buku', 'dokumen' => 'Dokumen', 'uu' => 'UU', 'Peraturan' => 'Peraturan', 'lain-lain' => 'Lain-lain'],['prompt'=>'Pilih Jenis Surat']); ?>
     
     <?php
