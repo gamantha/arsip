@@ -100,8 +100,8 @@ $onemonth = date("Y-m-d", strtotime(date("Y-m-d") . "+1 months"));
              'value'=>function($data) {return $data->divisi->nama_divisi;},
            ],
            'year',
-           'judul',
-			'tema',
+           'tema',
+			'judul',
            [
                          'attribute' => 'deskripsi',
              'label'=>'Tentang',

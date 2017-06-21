@@ -56,8 +56,8 @@ $this->params['breadcrumbs'][] = $this->title;
 			 'value'=>function($data) {return $data->divisi->nama_divisi;},
            ],
            'year',
-           'judul',
-			'tema',
+           'tema',
+			'judul',
                  [
                          'attribute' => 'deskripsi',
              'label'=>'Tentang',
