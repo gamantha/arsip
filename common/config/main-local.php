@@ -4,8 +4,8 @@ return [
         'db' => [
             'class' => 'yii\db\Connection',
             'dsn' => 'mysql:host=localhost;dbname=sigarsip',
-            'username' => 'root',
-            'password' => '',
+            'username' => 'ppsdm',
+            'password' => 'ppsdM2014',
             'charset' => 'utf8',
         ],
         'mailer' => [
