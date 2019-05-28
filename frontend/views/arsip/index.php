@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
              'label'=>'Nama Tema',
 			  //'filter'=>array('1'=>'PROD','2'=>'KU','3'=>'LG','4'=>'MRK','5'=>'PRC','6'=>'UM'),
      'filter' => ArrayHelper::map(Tema::find()->asArray()->All(), 'tema_id', 'tema'),
-             'value'=>function($data) {return $data->tema->tema;},
+             'value'=>function($data) {return $data->tema;},
            ],
 
 
