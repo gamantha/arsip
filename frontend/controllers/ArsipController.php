@@ -405,6 +405,7 @@ echo 'not valid URL';
              
                     $model->created_at = new \yii\db\Expression('NOW()');
                     $model->arsip_id = $id;
+                    $model->file_location = '';
                     $model->save();
                     $uploadmodel->upload($model->id);
                     $model->file_location = $model->id . '_' . $uploadmodel->docFile->baseName . '.' . $uploadmodel->docFile->extension;
